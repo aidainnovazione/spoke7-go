@@ -1,0 +1,9 @@
+{
+    "protoc": {
+        "compileOnSave": true,
+        "options": [
+            "--proto_path=cmd/internal/metadata/proto",
+        ]
+    }
+}
+

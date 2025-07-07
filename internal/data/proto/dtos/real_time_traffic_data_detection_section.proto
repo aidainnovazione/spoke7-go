@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "internal/data/pb";
+
+// NB section = tratta
+
+enum DetectionSectionNodeType {
+  TYPE_START = 0; // nodo start
+  TYPE_END = 1; // nodo end
+}
+
+//Evento singolo (individuazione del passaggio di ogni veicolo individuabile nell’estremo 
+//finale del segmento e già individuato nell’estremo iniziale)
+
+message RealTimeTrafficDataByDetectionSection {
+    google.protobuf.Timestamp created_at = 1;
+    google.protobuf.Timestamp modified_at = 2;
+
+    //localizzazione e caratterizzaziobne rilievo
+    string data_source_name = 3;
+    string detection_section_id = 4;
+    DetectionSectionNodeType detection_section_node = 5;
+
+    string detection_type = 6;
+    string detection_technology = 7; //es floating car data
+    
+    // data rilevamento
+    google.protobuf.Timestamp detection_timestamp = 8;
+    string anonymous_detection_id = 9;
+}

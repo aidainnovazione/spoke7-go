@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package pb;
+
+
+option go_package = "internal/managment/pb";
+
+message UserInfo {
+    string sub = 1;             // Subject - unique user ID
+    string iss = 2;             // Issuer
+    string aud = 3;             // Audience
+    string name = 4;            // Preferred username
+    string display_name = 5;    // Full name
+    string email = 6;
+    string avatar = 7;          // Profile picture URL
+    repeated string address = 8;
+    string phone = 9;
+    repeated string groups = 10;
+    string owner = 11;
+  }

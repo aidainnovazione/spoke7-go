@@ -1,0 +1,39 @@
+service:
+  host: ""
+  port: 9090
+  grpcPort: 9091
+  openMsg: "Spoke 7 Metadata Server Started!"
+
+
+log:
+  level: debug # debug, info, warn, error
+  output: file # console, file
+  file:
+    path: "logs/spoke7-metadata.log"
+    maxSize: 1 # MB
+    maxBackups: 3 # number of backups files
+    maxAge: 7 # days
+    compress: false
+
+database:
+  type: "postgres"
+  host: "localhost"
+  port: 5432
+  timeout: 5000
+  databaseName: "spoke7"
+  username: "postgres"
+  password: "postgres"
+
+authentication:
+  jwksUrl: "TODO"
+  usernameClaim: "name"
+  rolesClaim: "roles"
+  skipUrls: ["/healh", "/swagger"]
+  organizationName: "spoke7"
+  applicationName: "spoke7"
+  groupsClaim: "groups"
+
+grpcStorageService:
+  host: "127.0.0.1"
+  port: 9096
+  grpcPort: 9097

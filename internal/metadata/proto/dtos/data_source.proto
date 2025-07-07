@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+import "dtos/detection_section.proto";
+import "dtos/detection_point.proto";
+import "dtos/road_network.proto";
+
+option go_package = "internal/metadata/pb";
+
+enum DataSourceType {
+  DATA_SOURCE_TYPE_UNSPECIFIED = 0;
+  // Add other types as needed
+  DATA_SOURCE_TYPE_REAL = 1;
+  DATA_SOURCE_TYPE_SIMULATOR = 2;
+}
+
+message DataSource {
+  string name = 1;
+  string description = 2;
+  DataSourceType type = 3;
+  string road_network_id = 4;
+  string owner = 5;
+  repeated string groups =  6;
+  string modified_by = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp modified_at = 9;
+  repeated pb.DetectionSection detection_sections = 10;
+  repeated pb.DetectionPoint detection_points = 11;  
+}
+message UpdateDataSource {
+  string name = 1;
+  string description = 2;
+  DataSourceType type = 3;
+  string road_network_id = 4;
+  string owner = 5;
+  repeated string groups =  6;
+  string modified_by = 7;
+  repeated pb.DetectionSection detection_sections = 8;
+  repeated pb.DetectionPoint detection_points = 9;
+  pb.RoadNetwork road_network = 10;
+}
+

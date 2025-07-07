@@ -1,0 +1,44 @@
+service:
+  host: "127.0.0.1"
+  port: 9070
+  grpcPort: 9071
+  openMsg: "Spoke 7 Data Server Started!"
+
+
+log:
+  level: debug # debug, info, warn, error
+  output: file # console, file
+  file:
+    path: "logs/spoke7-data.log"
+    maxSize: 1 # MB
+    maxBackups: 3 # number of backups files
+    maxAge: 7 # days
+    compress: false
+
+database:
+  type: "postgres"
+  host: "localhost"
+  port: 5432
+  timeout: 5000
+  databaseName: 'spoke7'
+  username: "postgres"
+  password: "postgres"
+
+grpcMetadataService:
+  host: "127.0.0.1"
+  port: 9090
+  grpcPort: 9091
+
+grpcStorageService:
+  host: "127.0.0.1"
+  port: 9096
+  grpcPort: 9097
+
+authentication:
+  jwksUrl: "TODO"
+  usernameClaim: "name"
+  rolesClaim: "roles"
+  skipUrls: ["/healh", "/swagger"]
+  organizationName: "spoke7"
+  applicationName: "spoke7"
+  groupsClaim: "groups"

@@ -1,0 +1,170 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "internal/storage/pb";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "dtos/stored_file.proto";
+
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  security_definitions: {
+    security: {
+      key: "bearer"
+      value: {
+        type: TYPE_API_KEY
+        in: IN_HEADER
+        name: "Authorization"
+        description: "Authentication token, prefixed by Bearer: Bearer <token>"
+      }
+    }
+  }
+  security: {
+    security_requirement: {
+      key: "bearer"
+    }
+  }
+};
+
+service StoredFileService {
+  rpc List(StoredFileListParams) returns (StoredFileListResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/storage"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+
+  rpc Upload(StoredFileUploadRequest) returns (pb.StoredFile) {
+    option (google.api.http) = {
+      post: "/api/v1/storage"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer"
+        }
+      }
+    };
+  }
+
+  
+  rpc Get(StoredFileGetRequest) returns (pb.StoredFile) {
+    option (google.api.http) = {
+      get: "/api/v1/storage/{id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer"
+        }
+      }
+    };
+  }
+
+  rpc Download(StoredFileDownloadRequest) returns (StoredFileDownloadResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/storage/{id}/download"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer"
+        }
+      }
+    };
+  }
+  
+  
+  
+  rpc Update(StoredFileUpdateRequest) returns (pb.StoredFile) {
+    option (google.api.http) = {
+      put: "/api/v1/storage/{id}"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer"
+        }
+      }
+    };
+  }
+
+  
+  
+  rpc Delete(StoredFileDeleteRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/storage/{id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer"
+        }
+      }
+    };
+  }
+}
+
+message StoredFileListParams {
+  string data_source_name = 1;
+  string tag = 2;
+}
+
+message StoredFileListResponse {
+  repeated pb.StoredFile storage = 1;
+}
+
+message StoredFileGetRequest {
+  string id = 1;
+}
+
+message StoredFileDownloadRequest {
+  string id = 1;
+}
+
+message StoredFileDownloadResponse {
+  string file_name = 1;
+  string file_format = 2;
+  bytes content = 3;
+}
+
+message StoredFileUploadRequest {
+  string data_source_name = 1;
+  string description = 2;
+  string tag = 3;
+  string file_name = 4;
+  uint32 file_size = 5;
+  FileType file_type = 6;
+  string file_format = 7;
+  bytes file_content = 8;
+}
+
+message StoredFileUpdateRequest {
+  string id = 1;
+  string data_source_name = 2;
+  string description = 3;
+  string tag = 4;
+  string file_name = 5;
+  uint32 file_size = 6;
+  FileType file_type = 7;
+  string file_format = 8;
+  bytes file_content = 9;
+}
+
+message StoredFileDeleteRequest {
+  string id = 1;
+}
+
+

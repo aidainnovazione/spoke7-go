@@ -1,0 +1,127 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "internal/data/pb";
+
+// current
+message CurrentTrafficDataByDetectionPointByLaneStatistics {
+    string lane_id = 1;
+    uint32 records_count = 2;
+    google.protobuf.Timestamp first_record_timestamp = 3;
+    google.protobuf.Timestamp last_record_timestamp = 4;
+    float longest_data_gap = 5;
+    google.protobuf.Timestamp longest_data_gap_start_timestamp = 6;
+    google.protobuf.Timestamp longest_data_gap_end_timestamp = 7;
+    float missing_interval_detection_rate = 8; // Percentage of expected intervals that are missing data.
+    
+    //total
+    uint32 total_count_all_vehicles = 9; // all counted vehicles
+    float total_harmonic_mean_speed_all_records = 10; // mean speed of all means
+    // rate
+    float percentage_records_with_counts = 11; // how many records have at least one count expressed as a percentage
+    float percentage_records_with_positive_average_speed = 12; // how many records have an average speed more than 0 expressed as a percentage
+  }
+
+
+  message CurrentTrafficDataByDetectionPointByLaneAggregate {
+    string data_source_name = 1;
+
+    google.protobuf.Timestamp detection_timestamp = 2;
+    uint32 records_count = 3;
+    float agg_percentage_records = 4;
+
+    float agg_percentage_records_with_counts = 5; // how many records have at least one count expressed as a percentage
+    float agg_percentage_records_with_positive_average_speed = 6; // how many records have an average speed more than 0 expressed as a percentage
+
+    float agg_count_vehicle_class_all = 7;
+
+    float agg_harmonic_mean_speed_vehicle_class_all = 8;
+
+    float agg_average_vehicle_length = 9;
+
+    // headway fra veicoli
+    float agg_average_headway = 10;
+    float agg_std_headway = 11;
+
+    // time-to-collision
+    float agg_average_time_to_collision = 12;
+    float agg_std_time_to_collision = 13;
+}
+
+message CurrentTrafficDataByDetectionSectionStatistics {
+    string detection_section_id = 1; 
+
+    uint32 records_count = 2;
+    google.protobuf.Timestamp first_record_timestamp = 3;
+    google.protobuf.Timestamp last_record_timestamp = 4;
+    float longest_data_gap = 5;
+    google.protobuf.Timestamp longest_data_gap_start_timestamp = 6;
+    google.protobuf.Timestamp longest_data_gap_end_timestamp = 7;
+    float missing_interval_detection_rate = 8; // Percentage of expected intervals that are missing data.
+    
+    //total
+    float total_average_forward_speed = 9; 
+    float total_average_backward_speed = 10; 
+  
+    // rate
+    float percentage_records_with_forward_speed = 11; // percentage of records where fw speed is present
+    float percentage_records_with_backward_speed = 12;// percentage of records where bw speed is present
+  }
+
+
+message CurrentTrafficDataByDetectionPointStatistics {
+    string detection_point_id = 1; 
+
+    uint32 records_count = 2;
+    google.protobuf.Timestamp first_record_timestamp = 3;
+    google.protobuf.Timestamp last_record_timestamp = 4;
+    float longest_data_gap = 5;
+    google.protobuf.Timestamp longest_data_gap_start_timestamp = 6;
+    google.protobuf.Timestamp longest_data_gap_end_timestamp = 7;
+    float missing_interval_detection_rate = 8; // Percentage of expected intervals that are missing data.
+
+    //total
+    uint32 total_count_equivalent_vehicles = 9; // all counted vehicles
+    float total_harmonic_mean_speed_all_records = 10; // mean speed of all means
+    // rate
+    float percentage_records_with_equivalent_counts = 11; // how many records have at least one count expressed as a percentage
+    float percentage_records_with_positive_average_speed = 12; // how many records have an average speed more than 0 expressed as a percentage
+}
+
+
+// generic
+message TrafficStatisticsDetectionPoint {
+    string detection_point_id = 1;
+    uint32 records_count = 2;
+    google.protobuf.Timestamp first_record_timestamp = 3;
+    google.protobuf.Timestamp last_record_timestamp = 4;
+    float longest_data_gap = 5;
+    google.protobuf.Timestamp longest_data_gap_start_timestamp = 6;
+    google.protobuf.Timestamp longest_data_gap_end_timestamp = 7;
+    float missing_interval_detection_rate = 8; // Percentage of expected intervals that are missing data.
+    }
+
+message TrafficStatisticsDetectionSection {
+    string detection_section_id = 1;
+    uint32 records_count = 2;
+    google.protobuf.Timestamp first_record_timestamp = 3;
+    google.protobuf.Timestamp last_record_timestamp = 4;
+    float longest_data_gap = 5;
+    google.protobuf.Timestamp longest_data_gap_start_timestamp = 6;
+    google.protobuf.Timestamp longest_data_gap_end_timestamp = 7;
+    float missing_interval_detection_rate = 8; // Percentage of expected intervals that are missing data.
+    }
+    
+message TrafficStatisticsLane {
+    string lane_id = 1;
+    uint32 records_count = 2;
+    google.protobuf.Timestamp first_record_timestamp = 3;
+    google.protobuf.Timestamp last_record_timestamp = 4;
+    float longest_data_gap = 5;
+    google.protobuf.Timestamp longest_data_gap_start_timestamp = 6;
+    google.protobuf.Timestamp longest_data_gap_end_timestamp = 7;
+    float missing_interval_detection_rate = 8; // Percentage of expected intervals that are missing data.
+    }

@@ -1,0 +1,10 @@
+cmd/metadata/logs/*
+cmd/data/logs/*
+cmd/sumo-integration/logs/*
+cmd/managment/logs/*
+cmd/storage/logs/*
+
+**__debug_bin**
+dist/
+
+ts-lib/*

@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "internal/data/pb";
+
+// NB detection point = sezione
+
+  
+//  I dati storicizzati vengono conservati con riferimento agli ultimi 10 anni.
+// ci sono due intervalli di aggregazione: ogni ora e ogni giorno
+
+message HistoryHourTrafficDataByDetectionPointByLane {
+    google.protobuf.Timestamp created_at = 1;
+    google.protobuf.Timestamp modified_at = 2;
+    string data_source_name = 3;
+    string lane_id = 4; // definisce univocamente detection_point_id
+
+    // campi relativi all'interallo di aggregazione di 60 min -> dipende dal db
+    google.protobuf.Timestamp detection_timestamp = 5;
+    uint32 detection_interval = 6;
+
+    // flusso - a partire dai conteggi
+    float traffic_flow_vehicle_class_1 = 7;
+    float traffic_flow_vehicle_class_2 = 8;
+    float traffic_flow_vehicle_class_3 = 9;
+    float traffic_flow_vehicle_class_4 = 10;
+    float traffic_flow_vehicle_class_5 = 11;
+    float traffic_flow_vehicle_class_6 = 12;
+    float traffic_flow_vehicle_class_7 = 13;
+    float traffic_flow_vehicle_class_8 = 14;
+
+    float traffic_flow_vehicle_class_equivalent = 15;
+
+    // velocità di transito
+
+    // - media
+    float average_speed_vehicle_class_1 = 16;
+    float average_speed_vehicle_class_2 = 17;
+    float average_speed_vehicle_class_3 = 18;
+    float average_speed_vehicle_class_4 = 19;
+    float average_speed_vehicle_class_5 = 20;
+    float average_speed_vehicle_class_6 = 21;
+    float average_speed_vehicle_class_7 = 22;
+    float average_speed_vehicle_class_8 = 23;
+
+    float average_speed_vehicle_class_all = 24;
+
+    // lunghezza
+    float average_vehicle_length = 25;
+
+    // headway fra veicoli
+    float average_headway = 26;
+
+    // time-to-collision
+    float average_time_to_collision = 27;
+}
+

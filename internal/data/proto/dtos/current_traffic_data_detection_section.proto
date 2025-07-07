@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "internal/data/pb";
+
+// NB detection section = tratta (NON sezione!!)
+
+// I dati correnti vengono conservati con riferimento agli ultimi dodici mesi e 
+// vengono archiviati in maniera da essere recuperati su base giornaliera. 
+message CurrentTrafficDataByDetectionSection {
+    google.protobuf.Timestamp created_at = 1;
+    google.protobuf.Timestamp modified_at = 2;
+    string data_source_name = 3;
+    string detection_section_id = 4;
+
+    // campi relativi all'interallo di aggregazione di 5 min -> dipende dal db
+    google.protobuf.Timestamp detection_timestamp = 5;
+    uint32 detection_interval = 6;
+
+    // A partire, per ogni veicolo (re)identificato in due 
+    // punti successivi di un segmento, dal tempo di 
+    // percorrenza: calcolo della velocità come rapporto 
+    // tra la differenza temporale degli istanti di 
+    // identificazione e la lunghezza del segmento
+    float forward_speed = 7;
+    float backward_speed = 8;
+}
+

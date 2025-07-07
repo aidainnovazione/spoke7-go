@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "internal/storage/pb";
+
+
+message StoredFile {
+  string id = 1;
+  string data_source_name = 2;
+  string description = 3;
+  string tag = 4;
+  string owner = 5;
+  repeated string groups =  6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp modified_at = 8;
+  string file_name = 9;
+  uint32 file_size = 10;
+  FileType file_type = 11;
+  string file_format = 12;
+}
+
+enum FileType {
+  FileType_UNKNOWN = 0;
+  FileType_REAL_TIME_TRAFFIC_BY_LANE = 1;
+  FileType_REAL_TIME_TRAFFIC_BY_DETECTION_SECTION = 2;
+  FileType_AGGREGATED_TRAFFIC_5_MIN_BY_LANE = 3;
+  FileType_AGGREGATED_TRAFFIC_5_MIN_BY_DETECTION_POINT = 4;
+  FileType_AGGREGATED_TRAFFIC_5_MIN_BY_DETECTION_SECTION = 5;
+  FileType_AGGREGATED_TRAFFIC_1_HOUR_BY_LANE = 6;
+  FileType_AGGREGATED_TRAFFIC_1_HOUR_BY_DETECTION_POINT = 7;
+  FileType_AGGREGATED_TRAFFIC_1_HOUR_BY_DETECTION_SECTION = 8;
+  FileType_AGGREGATED_TRAFFIC_DAY_BY_LANE = 9;
+  FileType_AGGREGATED_TRAFFIC_DAY_BY_DETECTION_POINT = 10;
+  FileType_AGGREGATED_TRAFFIC_DAY_BY_DETECTION_SECTION = 11;
+  FileType_SUMO_NETWORK = 12;
+  FileType_SUMO_ADDITIONAL = 13;
+  FileType_SUMO_ROUTES = 14;
+  FileType_DETECTION_SECTIONS = 15;
+  FileType_DETECTION_POINTS = 16;
+  FileType_NETWORK = 17;
+}

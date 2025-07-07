@@ -1,0 +1,215 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "internal/managment/pb";
+
+
+import "services/auth.proto";
+import "dtos/permission.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/descriptor.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  security_definitions: {
+    security: {
+      key: "bearer"
+      value: {
+        type: TYPE_API_KEY
+        in: IN_HEADER
+        name: "Authorization"
+        description: "Authentication token, prefixed by Bearer: Bearer <token>"
+      }
+    }
+  }
+  security: {
+    security_requirement: {
+      key: "bearer"
+    }
+  }
+};
+
+// ---------------------- ROLE SERVICE ----------------------
+
+service RoleService {
+  rpc ListRoles(ListRolesRequest) returns (ListRolesResponse) {
+    option (method_authorization_scope) =  {
+        required_permissions: "roles:read_list"
+    };
+    option (google.api.http) = {
+      get: "/api/v1/roles"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: { security_requirement: { key: "bearer"; } }
+    };
+  }
+
+  rpc CreateRole(CreateRoleRequest) returns (RoleInfo) {
+    option (method_authorization_scope) =  {
+      required_permissions: "roles:create"
+    };
+    option (google.api.http) = {
+      post: "/api/v1/roles"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: { security_requirement: { key: "bearer"; } }
+    };
+  }
+
+  rpc GetRole(GetRoleRequest) returns (RoleInfo) {
+    option (method_authorization_scope) =  {
+      required_permissions: "roles:read_detail"
+    };
+    option (google.api.http) = {
+      get: "/api/v1/roles/{name}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: { security_requirement: { key: "bearer"; } }
+    };
+  }
+
+
+
+  rpc UpdateRole(UpdateRoleRequest) returns (RoleInfo) {
+    option (method_authorization_scope) =  {
+      required_permissions: "roles:update"
+    };
+    option (google.api.http) = {
+      put: "/api/v1/roles/{name}"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: { security_requirement: { key: "bearer"; } }
+    };
+  }
+
+  rpc DeleteRole(DeleteRoleRequest) returns (DeleteRoleResponse) {
+    option (method_authorization_scope) =  {
+      required_permissions: "roles:delete"
+    };
+    option (google.api.http) = {
+      delete: "/api/v1/roles/{name}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: { security_requirement: { key: "bearer"; } }
+    };
+  }
+
+  rpc AddUserToRole(AddUserToRoleRequest) returns (RoleInfo) {
+    option (method_authorization_scope) =  {
+      required_permissions: "roles:assign_user"
+    };
+    option (google.api.http) = {
+      post: "/api/v1/roles/{role_id}/users"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: { security_requirement: { key: "bearer"; } }
+    };
+  }
+
+  rpc RemoveUserFromRole(RemoveUserFromRoleRequest) returns (RoleInfo) {
+    option (method_authorization_scope) =  {
+      required_permissions: "roles:remove_user"
+    };
+    option (google.api.http) = {
+      delete: "/api/v1/roles/{role_id}/users/{user_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: { security_requirement: { key: "bearer"; } }
+    };
+  }
+
+  rpc GetUsersByRole(GetUsersByRoleRequest) returns (GetUsersByRoleResponse) {
+    option (method_authorization_scope) =  {
+      required_permissions: "roles:view_users"
+    };
+    option (google.api.http) = {
+      get: "/api/v1/roles/{role_id}/users"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: { security_requirement: { key: "bearer"; } }
+    };
+  }
+
+  rpc ListPermissions(ListPermissionsRequest) returns (ListPermissionsResponse) {
+    option (method_authorization_scope) =  {
+      required_permissions: "permissions:read_list"
+      restricted : false
+    };
+    option (google.api.http) = {
+      get: "/api/v1/permissions"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: { security_requirement: { key: "bearer"; } }
+    };
+  }
+}
+
+// ---------------------- MESSAGES ----------------------
+
+
+message CreateRoleRequest {
+  string name = 1;
+  repeated Permission permissions = 2;
+}
+
+message UpdateRoleRequest {
+  string name = 1;
+  repeated Permission permissions = 2;
+}
+
+message RoleInfo {
+  string name = 1;
+  repeated Permission permissions = 2;
+}
+
+message ListRolesRequest {
+}
+
+message ListRolesResponse {
+  repeated string roles = 1;
+}
+
+message GetRoleRequest {
+  string name = 1;
+}
+
+message DeleteRoleRequest {
+  string name = 1;
+}
+
+message DeleteRoleResponse {
+  bool success = 1;
+}
+
+message AddUserToRoleRequest {
+  string role_id = 1;
+  string user_id = 2;
+}
+
+message RemoveUserFromRoleRequest {
+  string role_id = 1;
+  string user_id = 2;
+}
+
+message GetUsersByRoleRequest {
+  string role_id = 1;
+}
+
+message GetUsersByRoleResponse {
+  repeated string user_ids = 1;
+}
+
+message ListPermissionsRequest {
+}
+
+message ListPermissionsResponse {
+  repeated PermissionFeature permissions = 1;
+}
+
+message CasbinResponse {
+  string response = 1;
+}

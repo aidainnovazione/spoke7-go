@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "internal/metadata/pb";
+
+message DetectionSection {
+  string id = 1;
+  string data_source_name = 2;
+  string description = 3;
+  double start_latitude = 4;
+  double start_longitude = 5;
+  double end_latitude = 6;
+  double end_longitude = 7;
+  int32 direction = 8;
+  google.protobuf.Struct shape = 9;
+  string road_network_id = 10;
+  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp modified_at = 12;
+  repeated DetectionSectionRoadNetwork detection_section_road_networks = 13;
+}
+
+message DetectionSectionRoadNetwork {
+  string id = 1;
+  string detection_section_id = 2;
+  string road_network_id = 3;
+  double start_meters = 4;
+  double end_meters = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp modified_at = 7;
+}

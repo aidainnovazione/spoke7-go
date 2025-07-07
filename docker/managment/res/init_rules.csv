@@ -1,0 +1,81 @@
+p, feature:datasource:read, datasource, read_list
+p, feature:datasource:read, datasource, read_detail
+p, feature:datasource:create, datasource, create
+p, feature:datasource:update, datasource, update
+p, feature:datasource:delete, datasource, delete
+
+p, feature:traffic:read, traffic, read_list
+p, feature:traffic:read, traffic, read_detail
+p, feature:traffic:create, traffic, create
+p, feature:traffic:update, traffic, update
+p, feature:traffic:delete, traffic, delete
+
+p, feature:dashboard:read, dashboard, read_list
+p, feature:dashboard:read, dashboard, read_detail
+p, feature:dashboard:create, dashboard, create
+p, feature:dashboard:update, dashboard, update
+p, feature:dashboard:delete, dashboard, delete
+
+p, feature:network:read, network, read_list
+p, feature:network:read, network, read_detail
+
+p, feature:group:list, group, list
+p, feature:group:all, group, all
+p, feature:group:read, group, read
+p, feature:group:create, group, create
+p, feature:group:update, group, update
+p, feature:group:delete, group, delete
+
+p, feature:user:list, user, list
+p, feature:user:all, user, all
+p, feature:user:read, user, read
+p, feature:user:create, user, create
+p, feature:user:update, user, update
+p, feature:user:delete, user, delete
+p, feature:user:permissions, user, permissions
+
+p, feature:roles:read, roles, read_list
+p, feature:roles:read, roles, read_detail
+p, feature:roles:create, roles, create
+p, feature:roles:update, roles, update
+p, feature:roles:delete, roles, delete
+
+g, role:admin, feature:group:all
+g, role:admin, feature:group:list
+g, role:admin, feature:group:read
+g, role:admin, feature:group:create
+g, role:admin, feature:group:update
+g, role:admin, feature:group:delete
+
+g, role:admin, feature:user:list
+g, role:admin, feature:user:read
+g, role:admin, feature:user:create
+g, role:admin, feature:user:update
+g, role:admin, feature:user:delete
+g, role:admin, feature:user:permissions
+
+g, role:admin, feature:datasource:read
+g, role:admin, feature:datasource:create
+g, role:admin, feature:datasource:update
+g, role:admin, feature:datasource:delete
+
+g, role:admin, feature:traffic:read
+g, role:admin, feature:traffic:create
+g, role:admin, feature:traffic:update
+g, role:admin, feature:traffic:delete
+
+g, role:admin, feature:dashboard:read
+g, role:admin, feature:dashboard:create
+g, role:admin, feature:dashboard:update
+g, role:admin, feature:dashboard:delete
+
+
+g, role:admin, feature:roles:read
+g, role:admin, feature:roles:create
+g, role:admin, feature:roles:update
+g, role:admin, feature:roles:delete
+
+p, role:admin, permissions, read_list
+
+
+g, admin_spoke7, role:admin, 

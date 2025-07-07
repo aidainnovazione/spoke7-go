@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+
+option go_package = "internal/metadata/pb";
+  
+  message Dashboard {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string data_source_name = 4;
+    repeated Section sections = 5;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp modified_at = 7;
+    string owner = 8;
+    repeated string groups =  9;
+    Bottombar bottombar = 10;
+    Sidebar sidebar = 11;
+    BaseMap base_map = 12;
+  }
+
+  
+  enum LayerType {
+    LAYER_TYPE_CURRENT_TRAFFIC_LANE = 0;
+    LAYER_TYPE_CURRENT_TRAFFIC_POINT = 1;
+    LAYER_TYPE_CURRENT_TRAFFIC_SECTION = 2;
+    LAYER_TYPE_NETWORK = 3;
+    LAYER_TYPE_SPIRA = 4;
+  }
+  
+  message Section {
+    string name = 1;
+    bool is_visible = 2;
+    bool is_expanded = 3;
+    LayerType layer_type = 4;
+    google.protobuf.Struct params = 5;
+  }
+
+  
+  message Sidebar {
+    bool is_open = 1;
+    string injected_component = 2;
+  }
+  
+  message Bottombar {
+    bool is_open = 1;
+    google.protobuf.Timestamp selected_time = 2;
+    google.protobuf.Timestamp start_time = 3;
+    google.protobuf.Timestamp end_time = 4;
+    int64 interval = 5;
+  }
+  
+  enum MapTheme {
+    LIGHT = 0;
+    DARK = 1;
+  }
+
+  message BaseMap {
+    MapTheme map_theme = 1;
+    repeated double center = 2; // [latitude, longitude]
+    double zoom = 3;
+  }

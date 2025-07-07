@@ -1,0 +1,37 @@
+service:
+  host: ""
+  port: 9060
+  grpcPort: 9061
+  openMsg: "Spoke 7 Sumo Integration Server Started!"
+
+
+log:
+  level: info # debug, info, warn, error
+  output: file # console, file
+  file:
+    path: "logs/spoke7-sumo.log"
+    maxSize: 1 # MB
+    maxBackups: 3 # number of backups files
+    maxAge: 7 # days
+    compress: false
+
+grpcDataService:
+  host: "localhost"
+  port: 9070
+  grpcPort: 9071
+
+grpcMetadataService:
+  host: "localhost"
+  port: 9090
+  grpcPort: 9091
+
+grpcStorageService:
+  host: "127.0.0.1"
+  port: 9096
+  grpcPort: 9097
+  
+authentication:
+  jwksUrl: "TODO"
+  usernameClaim: "name"
+  rolesClaim: "roles"
+  skipUrls: ["/healh", "/swagger"]

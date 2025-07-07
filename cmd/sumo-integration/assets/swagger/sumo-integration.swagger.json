@@ -1,0 +1,361 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "services/sumo_integration_current_traffic_data_detection_point_lane.service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "SumoIntegrationCurrentTrafficDataByDetectionPointByLaneService"
+    },
+    {
+      "name": "SumoIntegrationCurrentTrafficDataByDetectionSectionService"
+    },
+    {
+      "name": "SumoIntegrationDataSourceService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/datasource/{dataSource}/import": {
+      "post": {
+        "operationId": "SumoIntegrationDataSourceService_ImportFromXml",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbImportResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dataSource",
+            "description": "Name of the data source",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SumoIntegrationDataSourceServiceImportFromXmlBody"
+            }
+          }
+        ],
+        "tags": [
+          "SumoIntegrationDataSourceService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/roadnetwork/import": {
+      "post": {
+        "summary": "Import road network from XML file\nreturn id of the created road network or an error message\n@Summary Import road network from XML file\n@Description Import road network from XML file\n@Tags SumoIntegration\n@Accept json\n@Produce json\n@Param xml body XmlFile true \"XML file\"\n@Success 200 {object} RoadNetworkImportResponse",
+        "operationId": "SumoIntegrationDataSourceService_ImportRoadNetworkFromXml",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbRoadNetworkImportResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbRoadNetworkImportRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SumoIntegrationDataSourceService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/sumo/datasource/{dataSourceName}/traffic/current/detection_point/lane/from-xml": {
+      "post": {
+        "operationId": "SumoIntegrationCurrentTrafficDataByDetectionPointByLaneService_SumoIntegrationCreateCurrentTrafficDataByDetectionPointByLaneFromXml",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbSumoIntegrationCreateCurrentTrafficDataByDetectionPointByLaneFromXmlResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dataSourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SumoIntegrationCurrentTrafficDataByDetectionPointByLaneServiceSumoIntegrationCreateCurrentTrafficDataByDetectionPointByLaneFromXmlBody"
+            }
+          }
+        ],
+        "tags": [
+          "SumoIntegrationCurrentTrafficDataByDetectionPointByLaneService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/sumo/datasource/{dataSourceName}/traffic/current/detection_section/from-xml": {
+      "post": {
+        "operationId": "SumoIntegrationCurrentTrafficDataByDetectionSectionService_SumoIntegrationCreateCurrentTrafficDataByDetectionSectionFromXml",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbSumoIntegrationCreateCurrentTrafficDataByDetectionSectionFromXmlResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dataSourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SumoIntegrationCurrentTrafficDataByDetectionSectionServiceSumoIntegrationCreateCurrentTrafficDataByDetectionSectionFromXmlBody"
+            }
+          }
+        ],
+        "tags": [
+          "SumoIntegrationCurrentTrafficDataByDetectionSectionService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "SumoIntegrationCurrentTrafficDataByDetectionPointByLaneServiceSumoIntegrationCreateCurrentTrafficDataByDetectionPointByLaneFromXmlBody": {
+      "type": "object",
+      "properties": {
+        "startTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "xml": {
+          "$ref": "#/definitions/pbXmlFile"
+        }
+      }
+    },
+    "SumoIntegrationCurrentTrafficDataByDetectionSectionServiceSumoIntegrationCreateCurrentTrafficDataByDetectionSectionFromXmlBody": {
+      "type": "object",
+      "properties": {
+        "startTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "xml": {
+          "$ref": "#/definitions/pbXmlFile"
+        }
+      }
+    },
+    "SumoIntegrationDataSourceServiceImportFromXmlBody": {
+      "type": "object",
+      "properties": {
+        "networkName": {
+          "type": "string"
+        },
+        "configFile": {
+          "$ref": "#/definitions/pbXmlFile"
+        },
+        "netFile": {
+          "$ref": "#/definitions/pbXmlFile"
+        },
+        "routeFiles": {
+          "$ref": "#/definitions/pbXmlFile"
+        },
+        "additionsFiles": {
+          "$ref": "#/definitions/pbXmlFile"
+        }
+      }
+    },
+    "pbImportResponse": {
+      "type": "object",
+      "properties": {
+        "netCount": {
+          "type": "string",
+          "format": "int64",
+          "title": "number of detection point created"
+        },
+        "routeCount": {
+          "type": "string",
+          "format": "int64",
+          "title": "number of detection point created"
+        },
+        "additionalCount": {
+          "type": "string",
+          "format": "int64",
+          "title": "number of detection point created"
+        },
+        "message": {
+          "type": "string",
+          "title": "Success or error message"
+        }
+      }
+    },
+    "pbRoadNetworkImportRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name of the road network"
+        },
+        "xml": {
+          "$ref": "#/definitions/pbXmlFile"
+        }
+      }
+    },
+    "pbRoadNetworkImportResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID of the created road network"
+        },
+        "message": {
+          "type": "string",
+          "title": "Success or error message"
+        }
+      }
+    },
+    "pbSumoIntegrationCreateCurrentTrafficDataByDetectionPointByLaneFromXmlResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "pbSumoIntegrationCreateCurrentTrafficDataByDetectionSectionFromXmlResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "pbXmlFile": {
+      "type": "object",
+      "properties": {
+        "filename": {
+          "type": "string"
+        },
+        "contentType": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearer": {
+      "type": "apiKey",
+      "description": "Authentication token, prefixed by Bearer: Bearer \u003ctoken\u003e",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ]
+}

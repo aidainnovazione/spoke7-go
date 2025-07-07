@@ -1,0 +1,2073 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "services/dashboard.service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "DashboardService"
+    },
+    {
+      "name": "DataSourceService"
+    },
+    {
+      "name": "DetectionPointService"
+    },
+    {
+      "name": "DetectionSectionService"
+    },
+    {
+      "name": "HealthService"
+    },
+    {
+      "name": "RoadNetworkService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/dashboard": {
+      "get": {
+        "operationId": "DashboardService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDashboardListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dataSourceName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DashboardService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "DashboardService_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDashboard"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbDashboard"
+            }
+          }
+        ],
+        "tags": [
+          "DashboardService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "DashboardService_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDashboard"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbDashboard"
+            }
+          }
+        ],
+        "tags": [
+          "DashboardService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/dashboard/{id}": {
+      "get": {
+        "operationId": "DashboardService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDashboard"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DashboardService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DashboardService_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DashboardService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/datasource": {
+      "get": {
+        "operationId": "DataSourceService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDataSourceListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "detectionSections",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "detectionPoints",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "DataSourceService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "DataSourceService_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDataSource"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbDataSource"
+            }
+          }
+        ],
+        "tags": [
+          "DataSourceService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "DataSourceService_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDataSource"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUpdateDataSource"
+            }
+          }
+        ],
+        "tags": [
+          "DataSourceService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/datasource/{datasourceName}/detection_points": {
+      "get": {
+        "operationId": "DetectionPointService_ListDetectionPoints",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbListDetectionPointsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DetectionPointService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DetectionPointService_DeleteAllDetectionPoint",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DetectionPointService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "DetectionPointService_CreateDetectionPoints",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDetectionPoint"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DetectionPointServiceCreateDetectionPointsBody"
+            }
+          }
+        ],
+        "tags": [
+          "DetectionPointService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "DetectionPointService_UpdateDetectionPoint",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDetectionPoint"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DetectionPointServiceUpdateDetectionPointBody"
+            }
+          }
+        ],
+        "tags": [
+          "DetectionPointService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/datasource/{datasourceName}/detection_points/bulk": {
+      "post": {
+        "operationId": "DetectionPointService_BulkCreateDetectionPoints",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbBulkDetectionPointResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DetectionPointServiceBulkCreateDetectionPointsBody"
+            }
+          }
+        ],
+        "tags": [
+          "DetectionPointService"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/datasource/{datasourceName}/detection_points/{id}": {
+      "get": {
+        "operationId": "DetectionPointService_GetDetectionPoint",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDetectionPoint"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DetectionPointService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DetectionPointService_DeleteDetectionPoint",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DetectionPointService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/datasource/{datasourceName}/detection_section": {
+      "get": {
+        "operationId": "DetectionSectionService_ListDetectionSections",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbListDetectionSectionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DetectionSectionService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "DetectionSectionService_CreateDetectionSection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDetectionSection"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DetectionSectionServiceCreateDetectionSectionBody"
+            }
+          }
+        ],
+        "tags": [
+          "DetectionSectionService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "DetectionSectionService_UpdateDetectionSection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDetectionSection"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DetectionSectionServiceUpdateDetectionSectionBody"
+            }
+          }
+        ],
+        "tags": [
+          "DetectionSectionService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/datasource/{datasourceName}/detection_section/bulk": {
+      "post": {
+        "operationId": "DetectionSectionService_BulkCreateDetectionSections",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbBulkDetectionSectionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DetectionSectionServiceBulkCreateDetectionSectionsBody"
+            }
+          }
+        ],
+        "tags": [
+          "DetectionSectionService"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/datasource/{datasourceName}/detection_section/{id}": {
+      "get": {
+        "operationId": "DetectionSectionService_GetDetectionSection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDetectionSection"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DetectionSectionService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DetectionSectionService_DeleteDetectionSection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DetectionSectionService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/datasource/{datasourceName}/many_detection_points": {
+      "post": {
+        "operationId": "DetectionPointService_CreateManyDetectionPoints",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbCreateManyDetectionPointsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "datasourceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DetectionPointServiceCreateManyDetectionPointsBody"
+            }
+          }
+        ],
+        "tags": [
+          "DetectionPointService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/datasource/{name}": {
+      "get": {
+        "operationId": "DataSourceService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDataSource"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "params.detectionSections",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "params.detectionPoints",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "DataSourceService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DataSourceService_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DataSourceService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/roadnetwork": {
+      "get": {
+        "operationId": "RoadNetworkService_ListRoadNetworks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbRoadNetworkListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "RoadNetworkService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "RoadNetworkService_CreateRoadNetwork",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbRoadNetwork"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbRoadNetworkCreateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RoadNetworkService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/roadnetwork/upload": {
+      "put": {
+        "operationId": "RoadNetworkService_UploadRoadNetwork",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbRoadNetwork"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbRoadNetworkFile"
+            }
+          }
+        ],
+        "tags": [
+          "RoadNetworkService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/roadnetwork/{id}": {
+      "get": {
+        "operationId": "RoadNetworkService_GetRoadNetwork",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbRoadNetwork"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RoadNetworkService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "RoadNetworkService_DeleteRoadNetwork",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RoadNetworkService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "RoadNetworkService_UpdateRoadNetwork",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbRoadNetwork"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoadNetworkServiceUpdateRoadNetworkBody"
+            }
+          }
+        ],
+        "tags": [
+          "RoadNetworkService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/roadnetwork/{id}/geoJSON": {
+      "get": {
+        "operationId": "RoadNetworkService_GetRoadNetworkGeoJSON",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RoadNetworkService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/roadnetwork/{id}/upload": {
+      "put": {
+        "operationId": "RoadNetworkService_UpdateRoadNetworkByImport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbRoadNetwork"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoadNetworkServiceUpdateRoadNetworkByImportBody"
+            }
+          }
+        ],
+        "tags": [
+          "RoadNetworkService"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "HealthService_GetHealthStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbHealth"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "HealthService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "DetectionPointServiceBulkCreateDetectionPointsBody": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "$ref": "#/definitions/pbFile",
+          "title": "File containing detection points in JSON format"
+        }
+      }
+    },
+    "DetectionPointServiceCreateDetectionPointsBody": {
+      "type": "object",
+      "properties": {
+        "detectionPoint": {
+          "$ref": "#/definitions/pbDetectionPoint"
+        }
+      }
+    },
+    "DetectionPointServiceCreateManyDetectionPointsBody": {
+      "type": "object",
+      "properties": {
+        "detectionPoint": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbDetectionPoint"
+          }
+        }
+      }
+    },
+    "DetectionPointServiceUpdateDetectionPointBody": {
+      "type": "object",
+      "properties": {
+        "detectionPoint": {
+          "$ref": "#/definitions/pbDetectionPoint"
+        }
+      }
+    },
+    "DetectionSectionServiceBulkCreateDetectionSectionsBody": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "$ref": "#/definitions/pbFile"
+        }
+      }
+    },
+    "DetectionSectionServiceCreateDetectionSectionBody": {
+      "type": "object",
+      "properties": {
+        "detectionSection": {
+          "$ref": "#/definitions/pbDetectionSection"
+        }
+      }
+    },
+    "DetectionSectionServiceUpdateDetectionSectionBody": {
+      "type": "object",
+      "properties": {
+        "detectionSection": {
+          "$ref": "#/definitions/pbDetectionSection"
+        }
+      }
+    },
+    "RoadNetworkServiceUpdateRoadNetworkBody": {
+      "type": "object",
+      "properties": {
+        "roadNetwork": {
+          "$ref": "#/definitions/pbRoadNetwork"
+        }
+      }
+    },
+    "RoadNetworkServiceUpdateRoadNetworkByImportBody": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "$ref": "#/definitions/pbFile",
+          "title": "File containing detection points in JSON format"
+        }
+      }
+    },
+    "pbBaseMap": {
+      "type": "object",
+      "properties": {
+        "mapTheme": {
+          "$ref": "#/definitions/pbMapTheme"
+        },
+        "center": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          },
+          "title": "[latitude, longitude]"
+        },
+        "zoom": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "pbBottombar": {
+      "type": "object",
+      "properties": {
+        "isOpen": {
+          "type": "boolean"
+        },
+        "selectedTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "interval": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "pbBulkDetectionPointResponse": {
+      "type": "object",
+      "properties": {
+        "detectionPoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbDetectionPoint"
+          },
+          "title": "List of detection points created"
+        }
+      }
+    },
+    "pbBulkDetectionSectionResponse": {
+      "type": "object",
+      "properties": {
+        "detectionSections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbDetectionSection"
+          }
+        }
+      }
+    },
+    "pbCoordinate": {
+      "type": "object",
+      "properties": {
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "title": "Represents the longitude"
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "title": "Represents the latitude"
+        }
+      }
+    },
+    "pbCreateManyDetectionPointsResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "title": "Indicates if the operation was successful"
+        },
+        "message": {
+          "type": "string",
+          "title": "Additional information about the operation"
+        },
+        "detectionPoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbDetectionPoint"
+          },
+          "title": "List of detection points created"
+        }
+      },
+      "title": "Response indicating the status of the operation"
+    },
+    "pbDashboard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "dataSourceName": {
+          "type": "string"
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbSection"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modifiedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "bottombar": {
+          "$ref": "#/definitions/pbBottombar"
+        },
+        "sidebar": {
+          "$ref": "#/definitions/pbSidebar"
+        },
+        "baseMap": {
+          "$ref": "#/definitions/pbBaseMap"
+        }
+      }
+    },
+    "pbDashboardListResponse": {
+      "type": "object",
+      "properties": {
+        "dashboard": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbDashboard"
+          }
+        }
+      }
+    },
+    "pbDataSource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/pbDataSourceType"
+        },
+        "roadNetworkId": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "modifiedBy": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modifiedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "detectionSections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbDetectionSection"
+          }
+        },
+        "detectionPoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbDetectionPoint"
+          }
+        }
+      }
+    },
+    "pbDataSourceGetParams": {
+      "type": "object",
+      "properties": {
+        "detectionSections": {
+          "type": "boolean"
+        },
+        "detectionPoints": {
+          "type": "boolean"
+        }
+      }
+    },
+    "pbDataSourceListResponse": {
+      "type": "object",
+      "properties": {
+        "datasource": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbDataSource"
+          }
+        }
+      }
+    },
+    "pbDataSourceType": {
+      "type": "string",
+      "enum": [
+        "DATA_SOURCE_TYPE_UNSPECIFIED",
+        "DATA_SOURCE_TYPE_REAL",
+        "DATA_SOURCE_TYPE_SIMULATOR"
+      ],
+      "default": "DATA_SOURCE_TYPE_UNSPECIFIED",
+      "title": "- DATA_SOURCE_TYPE_REAL: Add other types as needed"
+    },
+    "pbDetectionPoint": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "lanes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbLane"
+          }
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Additional metadata properties as key-value pairs"
+        },
+        "geojsonShape": {
+          "type": "string",
+          "title": "GeoJSON representation of the shape (Point, LineString, Polygon, etc.)"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/pbCoordinate",
+          "title": "Optional - Represents the central point"
+        },
+        "position": {
+          "$ref": "#/definitions/pbPosition",
+          "title": "Represents the central point (with x and y coordinates)"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Corrected the field number to avoid conflict"
+        },
+        "modifiedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Corrected the field number to avoid conflict"
+        }
+      }
+    },
+    "pbDetectionSection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "dataSourceName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "startLatitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "startLongitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "endLatitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "endLongitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "direction": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "shape": {
+          "type": "object"
+        },
+        "roadNetworkId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modifiedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "detectionSectionRoadNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbDetectionSectionRoadNetwork"
+          }
+        }
+      }
+    },
+    "pbDetectionSectionRoadNetwork": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "detectionSectionId": {
+          "type": "string"
+        },
+        "roadNetworkId": {
+          "type": "string"
+        },
+        "startMeters": {
+          "type": "number",
+          "format": "double"
+        },
+        "endMeters": {
+          "type": "number",
+          "format": "double"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modifiedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "pbFile": {
+      "type": "object",
+      "properties": {
+        "filename": {
+          "type": "string"
+        },
+        "contentType": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "pbHealth": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "pbLane": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "index": {
+          "type": "string",
+          "title": "Maps to \"id_of_lane\" from the JSON"
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Additional metadata properties as key-value pairs"
+        },
+        "geojsonShape": {
+          "type": "string",
+          "title": "GeoJSON representation of the shape (Point, LineString, Polygon, etc.)"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/pbCoordinate",
+          "title": "Optional - Represents the coordinates of the lane"
+        },
+        "position": {
+          "$ref": "#/definitions/pbPosition",
+          "title": "Represents x and y (optional position)"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Corrected the field number to avoid conflict"
+        },
+        "modifiedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Corrected the field number to avoid conflict"
+        }
+      }
+    },
+    "pbLayerType": {
+      "type": "string",
+      "enum": [
+        "LAYER_TYPE_CURRENT_TRAFFIC_LANE",
+        "LAYER_TYPE_CURRENT_TRAFFIC_POINT",
+        "LAYER_TYPE_CURRENT_TRAFFIC_SECTION",
+        "LAYER_TYPE_NETWORK",
+        "LAYER_TYPE_SPIRA"
+      ],
+      "default": "LAYER_TYPE_CURRENT_TRAFFIC_LANE"
+    },
+    "pbListDetectionPointsResponse": {
+      "type": "object",
+      "properties": {
+        "datasourceName": {
+          "type": "string"
+        },
+        "detectionPoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbDetectionPoint"
+          }
+        }
+      }
+    },
+    "pbListDetectionSectionsResponse": {
+      "type": "object",
+      "properties": {
+        "datasourceName": {
+          "type": "string"
+        },
+        "detectionSections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbDetectionSection"
+          }
+        }
+      }
+    },
+    "pbMapTheme": {
+      "type": "string",
+      "enum": [
+        "LIGHT",
+        "DARK"
+      ],
+      "default": "LIGHT"
+    },
+    "pbPosition": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "format": "double",
+          "title": "Represents the x coordinate (for the position of the object)"
+        },
+        "y": {
+          "type": "number",
+          "format": "double",
+          "title": "Represents the y coordinate (for the position of the object)"
+        }
+      }
+    },
+    "pbRoadNetwork": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "geometry": {
+          "type": "object",
+          "title": "Store GeoJSON as a JSON string"
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Additional metadata properties as key-value pairs"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modifiedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "pbRoadNetworkCreateRequest": {
+      "type": "object",
+      "properties": {
+        "roadNetwork": {
+          "$ref": "#/definitions/pbRoadNetwork"
+        }
+      }
+    },
+    "pbRoadNetworkFile": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "$ref": "#/definitions/pbFile",
+          "title": "File containing detection points in JSON format"
+        }
+      }
+    },
+    "pbRoadNetworkListResponse": {
+      "type": "object",
+      "properties": {
+        "roadNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbRoadNetwork"
+          }
+        }
+      }
+    },
+    "pbSection": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "isVisible": {
+          "type": "boolean"
+        },
+        "isExpanded": {
+          "type": "boolean"
+        },
+        "layerType": {
+          "$ref": "#/definitions/pbLayerType"
+        },
+        "params": {
+          "type": "object"
+        }
+      }
+    },
+    "pbSidebar": {
+      "type": "object",
+      "properties": {
+        "isOpen": {
+          "type": "boolean"
+        },
+        "injectedComponent": {
+          "type": "string"
+        }
+      }
+    },
+    "pbUpdateDataSource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/pbDataSourceType"
+        },
+        "roadNetworkId": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "modifiedBy": {
+          "type": "string"
+        },
+        "detectionSections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbDetectionSection"
+          }
+        },
+        "detectionPoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbDetectionPoint"
+          }
+        },
+        "roadNetwork": {
+          "$ref": "#/definitions/pbRoadNetwork"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\nThe JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearer": {
+      "type": "apiKey",
+      "description": "Authentication token, prefixed by Bearer: Bearer \u003ctoken\u003e",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ]
+}

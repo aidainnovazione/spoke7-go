@@ -1,0 +1,187 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "internal/data/pb";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+import "dtos/history_traffic_data_detection_section.proto";
+import "dtos/traffic_requests.proto";
+import "dtos/traffic_responses.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  security_definitions: {
+    security: {
+      key: "bearer"
+      value: {
+        type: TYPE_API_KEY
+        in: IN_HEADER
+        name: "Authorization"
+        description: "Authentication token, prefixed by Bearer: Bearer <token>"
+      }
+    }
+  }
+  security: {
+    security_requirement: {
+      key: "bearer"
+    }
+  }
+};
+
+service HistoryHourTrafficDataByDetectionSectionService {
+  rpc ListHistoryHourTrafficDataByDetectionSection(ListTrafficDataByDetectionSectionRequest) returns (ListHistoryHourTrafficDataByDetectionSectionResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/history_hour/detection_section/list"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc GetHistoryHourTrafficDataByDetectionSection(GetTrafficDataByDetectionSectionRequest) returns (GetHistoryHourTrafficDataByDetectionSectionResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/history_hour/detection_section/single"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc CreateHistoryHourTrafficDataByDetectionSection(CreateHistoryHourTrafficDataByDetectionSectionRequest) returns (CreateHistoryHourTrafficDataByDetectionSectionResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/traffic/history_hour/detection_section",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc UpdateHistoryHourTrafficDataByDetectionSection(UpdateHistoryHourTrafficDataByDetectionSectionRequest) returns (UpdateHistoryHourTrafficDataByDetectionSectionResponse) {
+    option (google.api.http) = {
+      patch: "/api/v1/traffic/history_hour/detection_section",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc DeleteHistoryHourTrafficDataByDetectionSection(DeleteTrafficDataByDetectionSectionRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/traffic/history_hour/detection_section"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };    
+  }
+
+  rpc BulkCreateHistoryHourTrafficDataByDetectionSection(BulkCreateTrafficDataByDetectionSectionRequest) returns (BulkCreateTrafficDataByDetectionSectionResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/traffic/history_hour/detection_section/bulk",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc GetHistoryHourTrafficDataByDetectionSectionStatistics(GetTrafficDataByDetectionSectionStatisticsRequest) returns (GetTrafficDataByDetectionSectionStatisticsResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/history_hour/detection_section/statistics"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc ListHistoryHourTrafficDataByDetectionSectionDaily(ListTrafficDataByDetectionSectionDailyRequest) returns (ListHistoryHourTrafficDataByDetectionSectionDailyResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/history_hour/detection_section/daily"     
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+
+  rpc DownloadHistoryHourTrafficDataByDetectionSection(DownloadTrafficDataByDetectionSectionRequest) returns (DownloadResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/history_hour/detection_section/download"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+}
+
+
+message ListHistoryHourTrafficDataByDetectionSectionResponse {
+  repeated HistoryTrafficDataByDetectionSection history_hour_traffic_data_by_detection_section = 1;
+  uint32 total_count = 2;
+}
+
+
+message GetHistoryHourTrafficDataByDetectionSectionResponse {
+ repeated HistoryTrafficDataByDetectionSection history_hour_traffic_data_by_detection_section = 1;
+ uint32 total_count = 2;
+}
+
+message CreateHistoryHourTrafficDataByDetectionSectionRequest {
+  HistoryTrafficDataByDetectionSection history_hour_traffic_data_by_detection_section = 1;
+}
+
+message CreateHistoryHourTrafficDataByDetectionSectionResponse {
+  HistoryTrafficDataByDetectionSection history_hour_traffic_data_by_detection_section = 1;
+}
+
+message UpdateHistoryHourTrafficDataByDetectionSectionRequest {
+  HistoryTrafficDataByDetectionSection history_hour_traffic_data_by_detection_section = 1;
+}
+
+message UpdateHistoryHourTrafficDataByDetectionSectionResponse {
+  HistoryTrafficDataByDetectionSection history_hour_traffic_data_by_detection_section = 1;
+}
+
+message ListHistoryHourTrafficDataByDetectionSectionDailyResponse {
+  repeated HistoryTrafficDataByDetectionSection daily_stats = 1;
+}

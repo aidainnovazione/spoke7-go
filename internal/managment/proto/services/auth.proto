@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "internal/managment/pb";
+
+
+
+import "google/protobuf/descriptor.proto";
+
+
+
+message MethodSecurityScope {
+  string required_permissions = 1;
+  bool restricted = 2;
+}
+
+
+extend google.protobuf.MethodOptions {
+    optional MethodSecurityScope method_authorization_scope = 500001;
+  }
+  

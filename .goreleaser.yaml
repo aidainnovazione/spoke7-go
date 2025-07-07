@@ -1,0 +1,216 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+
+# This is an example .goreleaser.yml file with some sensible defaults.
+# Make sure to check the documentation at https://goreleaser.com
+dist: dist
+before:
+  hooks:
+    # You may remove this if you don't use go modules.
+    - go mod tidy
+builds:
+
+  - id: "metadata"
+    main: ./cmd/metadata/
+    binary: metadata/metadata
+    env:
+      - CGO_ENABLED=0
+      - GO111MODULE=on
+
+    ldflags:
+      - -X spoke7-go.Version={{.Version}}
+    flags:
+      - -trimpath
+      - -mod=readonly
+    goos:
+      - linux
+      - windows
+    goarch:
+      - amd64
+      # - arm64
+      # - arm
+    goarm:
+      - "7"
+
+  - id: "data"
+    main: ./cmd/data/
+    binary: data/data
+    env:
+      - CGO_ENABLED=0
+      - GO111MODULE=on
+
+    ldflags:
+      - -X spoke7-go.Version={{.Version}}
+    flags:
+      - -trimpath
+      - -mod=readonly
+    goos:
+      - linux
+      - windows
+    goarch:
+      - amd64
+      # - arm64
+      # - arm
+    goarm:
+      - "7"
+
+  - id: "sumo-integration"
+    main: ./cmd/sumo-integration/
+    binary: sumo-integration/sumo-integration
+    env:
+      - CGO_ENABLED=0
+      - GO111MODULE=on
+
+    ldflags:
+      - -X spoke7-go.Version={{.Version}}
+    flags:
+      - -trimpath
+      - -mod=readonly
+    goos:
+      - linux
+      - windows
+    goarch:
+      - amd64
+      # - arm64
+      # - arm
+    goarm:
+      - "7"
+
+
+  - id: "managment"
+    main: ./cmd/managment/
+    binary: managment/managment
+    env:
+      - CGO_ENABLED=0
+      - GO111MODULE=on
+
+    ldflags:
+      - -X spoke7-go.Version={{.Version}}
+    flags:
+      - -trimpath
+      - -mod=readonly
+    goos:
+      - linux
+      - windows
+    goarch:
+      - amd64
+      # - arm64
+      # - arm
+    goarm:
+      - "7"
+
+  - id: "storage"
+    main: ./cmd/storage/
+    binary: storage/storage
+    env:
+      - CGO_ENABLED=0
+      - GO111MODULE=on
+
+    ldflags:
+      - -X spoke7-go.Version={{.Version}}
+    flags:
+      - -trimpath
+      - -mod=readonly
+    goos:
+      - linux
+      - windows
+    goarch:
+      - amd64
+      # - arm64
+      # - arm
+    goarm:
+      - "7"
+
+checksum:
+  name_template: "checksums.txt"
+snapshot:
+  #  name_template: "{{ incpatch .Version }}-next"
+  name_template: "{{ .Version }}-SNAPSHOT-{{.ShortCommit}}"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+
+dockers:
+  - id: metadata
+    goos: linux
+    goarch: amd64
+    dockerfile: docker/metadata/Dockerfile
+    ids:
+      - metadata
+    extra_files:
+      - docker/metadata/res
+      - cmd/metadata/assets/swagger
+
+    skip_push: false
+    push_flags:
+      - --tls-verify=false
+    image_templates:
+      - TODO
+
+  - id: data
+    goos: linux
+    goarch: amd64
+    dockerfile: docker/data/Dockerfile
+    ids:
+      - data
+    extra_files:
+      - docker/data/res
+      - cmd/data/assets/swagger
+    skip_push: false
+    push_flags:
+      - --tls-verify=false
+    image_templates:
+      - TODO
+
+  - id: sumo-integration
+    goos: linux
+    goarch: amd64
+    dockerfile: docker/sumo-integration/Dockerfile
+    ids:
+      - sumo-integration
+    extra_files:
+      - docker/sumo-integration/res
+      - cmd/sumo-integration/assets/swagger
+    skip_push: false
+    push_flags:
+      - --tls-verify=false
+    image_templates:
+      - TODO }}
+
+  - id: managment
+    goos: linux
+    goarch: amd64
+    dockerfile: docker/managment/Dockerfile
+    ids:
+      - managment
+    extra_files:
+      - docker/managment/res
+      - cmd/managment/assets/swagger
+    skip_push: false
+    push_flags:
+      - --tls-verify=false
+    image_templates:
+      - TODO
+
+  - id: storage
+    goos: linux
+    goarch: amd64
+    dockerfile: docker/storage/Dockerfile
+    ids:
+      - storage
+    extra_files:
+      - docker/storage/res
+      - cmd/storage/assets/swagger
+    skip_push: false
+    push_flags:
+      - --tls-verify=false
+    image_templates:
+      - TODO
+
+
+release:
+  mode: keep-existing
+  disable: true

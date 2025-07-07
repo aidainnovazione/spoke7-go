@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+import "dtos/traffic_flow_count.proto";
+
+option go_package = "internal/data/pb";
+
+// NB detection point = sezione
+
+// I dati storicizzati vengono conservati con riferimento agli ultimi 10 anni.
+// ci sono due intervalli di aggregazione: ogni ora e ogni giorno
+
+message HistoryDayTrafficDataByDetectionPoint {
+    google.protobuf.Timestamp created_at = 1;
+    google.protobuf.Timestamp modified_at = 2;
+    string data_source_name = 3;
+    string detection_point_id = 4;
+
+    // campi relativi all'interallo di aggregazione di 24 h -> dipende dal db
+    google.protobuf.Timestamp detection_timestamp = 5;
+    uint32 detection_interval = 6;
+
+    // flusso - a partire dai conteggi
+    float traffic_flow_vehicle_class_1 = 7;
+    float traffic_flow_vehicle_class_2 = 8;
+    float traffic_flow_vehicle_class_3 = 9;
+    float traffic_flow_vehicle_class_4 = 10;
+    float traffic_flow_vehicle_class_5 = 11;
+    float traffic_flow_vehicle_class_6 = 12;
+    float traffic_flow_vehicle_class_7 = 13;
+    float traffic_flow_vehicle_class_8 = 14;
+
+    float traffic_flow_vehicle_class_equivalent = 15;
+
+    // velocità di transito
+
+    // - media
+    float average_speed_vehicle_class_1 = 16;
+    float average_speed_vehicle_class_2 = 17;
+    float average_speed_vehicle_class_3 = 18;
+    float average_speed_vehicle_class_4 = 19;
+    float average_speed_vehicle_class_5 = 20;
+    float average_speed_vehicle_class_6 = 21;
+    float average_speed_vehicle_class_7 = 22;
+    float average_speed_vehicle_class_8 = 23;
+
+    float average_speed_vehicle_class_all = 24;
+
+    // lunghezza
+    float average_vehicle_length = 25;
+
+    // headway fra veicoli
+    float average_headway = 26;
+
+    // time-to-collision
+    float average_time_to_collision = 27;
+
+    // Valore minimo, medio, massimo e deviazione standard del flusso orario
+    // Per categoria di veicoli
+    // Per corsia 
+    TrafficFlowParametersByDay traffic_flow_parameters_vehicle_class_1 = 28;
+    TrafficFlowParametersByDay traffic_flow_parameters_vehicle_class_2 = 29;
+    TrafficFlowParametersByDay traffic_flow_parameters_vehicle_class_3 = 30;
+    TrafficFlowParametersByDay traffic_flow_parameters_vehicle_class_4 = 31;
+    TrafficFlowParametersByDay traffic_flow_parameters_vehicle_class_5 = 32;
+    TrafficFlowParametersByDay traffic_flow_parameters_vehicle_class_6 = 33;
+    TrafficFlowParametersByDay traffic_flow_parameters_vehicle_class_7 = 34;
+    TrafficFlowParametersByDay traffic_flow_parameters_vehicle_class_8 = 35;
+
+    float instantaneous_speed_vel_class_1_max_flow = 36;
+    float instantaneous_speed_vel_class_2_max_flow = 37;
+    float instantaneous_speed_vel_class_3_max_flow = 38;
+
+    // Numerosità delle velocità istantanee rilevate all’interno di prefissate classi 
+    // di velocità (propedeutica alla funzione di distribuzione di velocità), 
+    // calcolato con riferimento alla aggregazione di tutte le fasce orarie con 
+    // flusso non superiore ad 1/10 del flusso giornaliero massimo.   
+    float instantaneous_speed_vel_class_1_min_flow = 39;
+    float instantaneous_speed_vel_class_2_min_flow = 40;
+    float instantaneous_speed_vel_class_3_min_flow = 41;
+    
+    // Numerosità degli headway all’interno di prefissate classi di headway
+    // (propedeutica alla funzione di distribuzione), calcolato con riferimento 
+    // alla fascia di maggior flusso orario. 
+    float headway_vel_class_1_max_flow = 42;
+    float headway_vel_class_2_max_flow = 43;
+    float headway_vel_class_3_max_flow = 44;
+
+    // Numerosità degli headway all’interno di prefissate classi di headway
+    // (propedeutica alla funzione di distribuzione), calcolato con riferimento 
+    // alla aggregazione di tutte le fasce orarie con flusso non superiore ad 1/10 
+    // del flusso giornaliero massimo. 
+    float headway_vel_class_1_min_flow = 45;
+    float headway_vel_class_2_min_flow = 46;
+    float headway_vel_class_3_min_flow = 47;
+}

@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "internal/data/pb";
+
+// NB detection point = sezione
+
+// I dati correnti vengono conservati con riferimento agli ultimi dodici mesi e 
+// vengono archiviati in maniera da essere recuperati su base giornaliera. 
+
+// valori aggregati sul periodo aggregati per ogni corsia
+message CurrentTrafficDataByDetectionPointByLane {
+    google.protobuf.Timestamp created_at = 1;
+    google.protobuf.Timestamp modified_at = 2;
+
+    string data_source_name = 3;
+    string lane_id = 4; // definisce univocamente detection_point_id
+
+    // campi relativi all'interallo di aggregazione di 5 min -> dipende dal db
+    google.protobuf.Timestamp detection_timestamp = 5;
+    uint32 detection_interval = 6;
+
+    // campi conteggio veicoli - somma
+    uint32 count_vehicle_class_1 = 7;
+    uint32 count_vehicle_class_2 = 8;
+    uint32 count_vehicle_class_3 = 9;
+    uint32 count_vehicle_class_4 = 10;
+    uint32 count_vehicle_class_5 = 11;
+    uint32 count_vehicle_class_6 = 12;
+    uint32 count_vehicle_class_7 = 13;
+    uint32 count_vehicle_class_8 = 14;
+    uint32 count_vehicle_class_all = 15;
+
+    // campi velocità di transito
+
+    // - media
+    float harmonic_mean_speed_vehicle_class_1 = 16;
+    float harmonic_mean_speed_vehicle_class_2 = 17;
+    float harmonic_mean_speed_vehicle_class_3 = 18;
+    float harmonic_mean_speed_vehicle_class_4 = 19;
+    float harmonic_mean_speed_vehicle_class_5 = 20;
+    float harmonic_mean_speed_vehicle_class_6 = 21;
+    float harmonic_mean_speed_vehicle_class_7 = 22;
+    float harmonic_mean_speed_vehicle_class_8 = 23;
+
+    float harmonic_mean_speed_vehicle_class_all = 24;
+
+    // - somma v istantenne rilevate
+    // Somma sull’intervallo di aggregazione del numero di velocità istantanee rilevate 
+    // all’interno di prefissate classi di velocità
+    // TBD le classi di velocità
+    uint32 count_detected_speed_vehicle_under_50 = 25;
+    uint32 count_detected_speed_vehicle_between_50_100 = 26;
+    uint32 count_detected_speed_vehicle_over_100 = 27;
+
+    // lunghezza
+    float average_vehicle_length = 28;
+
+    // headway fra veicoli
+    float average_headway = 29;
+    float std_headway = 30;
+
+    // time-to-collision
+    float average_time_to_collision = 31;
+    float std_time_to_collision = 32;
+}

@@ -1,0 +1,195 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "internal/data/pb";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+import "dtos/history_hour_traffic_data_detection_point.proto";
+import "dtos/traffic_requests.proto";
+import "dtos/traffic_responses.proto";
+
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  security_definitions: {
+    security: {
+      key: "bearer"
+      value: {
+        type: TYPE_API_KEY
+        in: IN_HEADER
+        name: "Authorization"
+        description: "Authentication token, prefixed by Bearer: Bearer <token>"
+      }
+    }
+  }
+  security: {
+    security_requirement: {
+      key: "bearer"
+    }
+  }
+};
+
+service HistoryHourTrafficDataByDetectionPointService {
+  rpc ListHistoryHourTrafficDataByDetectionPoint(ListTrafficDataByDetectionPointRequest) returns (ListHistoryHourTrafficDataByDetectionPointResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/history_hour/detection_point/list"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc GetHistoryHourTrafficDataByDetectionPoint(GetTrafficDataByDetectionPointRequest) returns (GetHistoryHourTrafficDataByDetectionPointResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/history_hour/detection_point/single"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc CreateHistoryHourTrafficDataByDetectionPoint(CreateHistoryHourTrafficDataByDetectionPointRequest) returns (CreateHistoryHourTrafficDataByDetectionPointResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/traffic/history_hour/detection_point",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc UpdateHistoryHourTrafficDataByDetectionPoint(UpdateHistoryHourTrafficDataByDetectionPointRequest) returns (UpdateHistoryHourTrafficDataByDetectionPointResponse) {
+    option (google.api.http) = {
+      patch: "/api/v1/traffic/history_hour/detection_point",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc DeleteHistoryHourTrafficDataByDetectionPoint(DeleteTrafficDataByDetectionPointRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/traffic/history_hour/detection_point"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+
+  rpc BulkCreateHistoryHourTrafficDataByDetectionPoint(BulkCreateTrafficDataByDetectionPointRequest) returns (BulkCreateTrafficDataByDetectionPointResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/traffic/history_hour/detection_point/bulk",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc GetHistoryHourTrafficDataByDetectionPointStatistics(GetTrafficDataByDetectionPointStatisticsRequest) returns (GetTrafficDataByDetectionPointStatisticsResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/history_hour/detection_point/statistics"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc ListHistoryHourTrafficDataByDetectionPointDaily(ListTrafficDataByDetectionPointDailyRequest) returns (ListHistoryHourTrafficDataByDetectionPointDailyResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/history_hour/detection_point/daily"     
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+
+  rpc DownloadHistoryHourTrafficDataByDetectionPoint(DownloadTrafficDataByDetectionPointRequest) returns (DownloadResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/history_hour/detection_point/download"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+}
+
+
+
+message ListHistoryHourTrafficDataByDetectionPointResponse {
+  repeated HistoryHourTrafficDataByDetectionPoint history_hour_traffic_data_by_detection_points = 1;
+  uint32 total_count = 2;
+}
+
+
+
+message GetHistoryHourTrafficDataByDetectionPointResponse {
+  repeated HistoryHourTrafficDataByDetectionPoint history_hour_traffic_data_by_detection_point = 1;
+  uint32 total_count = 2;
+}
+
+message CreateHistoryHourTrafficDataByDetectionPointRequest {
+  HistoryHourTrafficDataByDetectionPoint history_hour_traffic_data_by_detection_point = 1;
+}
+
+
+
+message CreateHistoryHourTrafficDataByDetectionPointResponse {
+  HistoryHourTrafficDataByDetectionPoint history_hour_traffic_data_by_detection_point = 1;
+}
+
+message UpdateHistoryHourTrafficDataByDetectionPointRequest {
+  HistoryHourTrafficDataByDetectionPoint history_hour_traffic_data_by_detection_point = 1;
+}
+
+
+
+message UpdateHistoryHourTrafficDataByDetectionPointResponse {
+  HistoryHourTrafficDataByDetectionPoint history_hour_traffic_data_by_detection_point = 1;
+}
+
+message ListHistoryHourTrafficDataByDetectionPointDailyResponse {
+  repeated HistoryHourTrafficDataByDetectionPoint daily_stats = 1;
+}

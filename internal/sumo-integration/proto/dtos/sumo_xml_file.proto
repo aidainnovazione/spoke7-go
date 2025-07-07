@@ -1,0 +1,12 @@
+syntax = "proto3";
+package pb;
+option go_package = "internal/sumo-integration/pb";
+
+message XmlFile {
+    string filename = 1;
+    string content_type = 2;
+    bytes content = 3;
+}
+
+
+

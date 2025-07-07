@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "internal/data/pb";
+
+// NB detection section = tratta (NON sezione!!)
+
+//  I dati storicizzati vengono conservati con riferimento agli ultimi 10 anni.
+// ci sono due intervalli di aggregazione: ogni ora e ogni giorno
+
+message HistoryTrafficDataByDetectionSection {
+    google.protobuf.Timestamp created_at = 1;
+    google.protobuf.Timestamp modified_at = 2;
+    string data_source_name = 3;
+    string detection_section_id = 4;
+
+    // campi relativi all'interallo di aggregazione di 5ì60 min -> dipende dal db
+    google.protobuf.Timestamp detection_timestamp = 5;
+    uint32 detection_interval = 6;
+
+    // velocità forward
+    float forward_speed_count = 7;
+    float forward_speed_count_max_flow = 8;
+    float forward_speed_count_min_flow = 9;
+
+    // velocità backward
+    float backward_speed_count = 10;
+    float backward_speed_count_max_flow = 11;
+    float backward_speed_count_min_flow = 12;
+}

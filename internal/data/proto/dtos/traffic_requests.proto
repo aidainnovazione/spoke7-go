@@ -1,0 +1,182 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+import "dtos/traffic_file.proto";
+
+option go_package = "internal/data/pb";
+
+// LIST
+message ListTrafficDataByDetectionPointRequest {
+    string data_source_name = 1;
+    repeated string detection_point_ids = 2;
+    google.protobuf.Timestamp start_time = 3;
+    google.protobuf.Timestamp end_time = 4;
+}
+
+
+message ListTrafficDataByDetectionPointByLaneRequest {
+    string data_source_name = 1;
+    repeated string lane_ids = 2;
+    google.protobuf.Timestamp start_time = 3;
+    google.protobuf.Timestamp end_time = 4;
+}
+
+message ListTrafficDataByDetectionSectionRequest {
+    string data_source_name = 1;
+    repeated string detection_section_ids = 2;
+    google.protobuf.Timestamp start_time = 3;
+    google.protobuf.Timestamp end_time = 4;    
+}
+    
+
+// GET
+message GetTrafficDataByDetectionPointRequest {
+    string data_source_name = 1;
+    repeated string detection_point_ids = 2;
+    google.protobuf.Timestamp detection_timestamp = 3;
+}
+
+message GetTrafficDataByDetectionPointByLaneRequest {
+    string data_source_name = 1;
+    repeated string lane_ids = 2;
+    google.protobuf.Timestamp detection_timestamp = 3;
+  }
+
+message GetTrafficDataByDetectionSectionRequest {
+    string data_source_name = 1;
+    repeated string detection_section_ids = 2;
+    google.protobuf.Timestamp detection_timestamp = 3;
+}
+
+// LIST DAILY
+message ListTrafficDataByDetectionPointDailyRequest {
+    string data_source_name = 1;                    // Required
+    repeated string detection_point_ids = 2;                 // Optional
+    google.protobuf.Timestamp from = 3;       // Optional
+    google.protobuf.Timestamp to = 4;         // Optional
+  }
+
+message ListTrafficDataByDetectionPointByLaneDailyRequest {
+    string data_source_name = 1;                    // Required
+    repeated string lane_ids = 2;                 // Optional
+    google.protobuf.Timestamp from = 3;       // Optional
+    google.protobuf.Timestamp to = 4;         // Optional
+  }
+
+message ListTrafficDataByDetectionSectionDailyRequest {
+    string data_source_name = 1;                    // Required
+    repeated string detection_section_ids = 2;                 // Optional
+    google.protobuf.Timestamp from = 3;       // Optional
+    google.protobuf.Timestamp to = 4;         // Optional
+  }
+
+  
+// DELETE
+message DeleteTrafficDataByDetectionPointRequest {
+    string data_source_name = 1;
+    repeated string detection_point_ids = 2;
+    google.protobuf.Timestamp start_timestamp = 3;
+    google.protobuf.Timestamp end_timestamp = 4;
+}
+
+message DeleteTrafficDataByDetectionPointByLaneRequest {
+    string data_source_name = 1;
+    repeated string lane_ids = 2;
+    google.protobuf.Timestamp start_timestamp = 3;
+    google.protobuf.Timestamp end_timestamp = 4;
+  }
+
+message DeleteTrafficDataByDetectionSectionRequest {
+    string data_source_name = 1;
+    repeated string detection_section_ids = 2;
+    google.protobuf.Timestamp start_timestamp = 3;
+    google.protobuf.Timestamp end_timestamp = 4;
+}
+
+// BULK CREATE
+
+message BulkCreateTrafficDataByDetectionPointRequest {
+    TrafficFile file = 1; 
+  }
+
+message BulkCreateTrafficDataByDetectionPointByLaneRequest {
+    TrafficFile file = 1; 
+  }
+
+message BulkCreateTrafficDataByDetectionSectionRequest {
+  TrafficFile file = 1; 
+}
+
+// STATISTICS
+
+message GetTrafficDataByDetectionPointStatisticsRequest {
+  string data_source_name = 1;
+  repeated string detection_point_ids = 2;
+  google.protobuf.Timestamp start_timestamp = 3;
+  google.protobuf.Timestamp end_timestamp = 4;
+  }
+
+message GetTrafficDataByDetectionPointByLaneStatisticsRequest {
+  string data_source_name = 1;
+  repeated string lane_ids = 2;
+  google.protobuf.Timestamp start_timestamp = 3;
+  google.protobuf.Timestamp end_timestamp = 4;
+}
+
+message GetTrafficDataByDetectionSectionStatisticsRequest {
+  string data_source_name = 1;
+  repeated string detection_section_ids = 2;
+  google.protobuf.Timestamp start_timestamp = 3;
+  google.protobuf.Timestamp end_timestamp = 4;
+}
+
+
+// GET STATISTICS AGGREGATE
+
+message GetTrafficDataByDetectionPointAggregateRequest {
+    string data_source_name = 1;
+    repeated string detection_point_ids = 2;
+    google.protobuf.Timestamp start_timestamp = 3;
+    google.protobuf.Timestamp end_timestamp = 4;
+  }
+  
+
+message GetTrafficDataByDetectionPointByLaneAggregateRequest {
+    string data_source_name = 1;
+    repeated string lane_ids = 2;
+    google.protobuf.Timestamp start_timestamp = 3;
+    google.protobuf.Timestamp end_timestamp = 4;
+  }
+  
+
+message GetTrafficDataByDetectionSectionAggregateRequest {
+    string data_source_name = 1;
+    repeated string detection_section_ids = 2;
+    google.protobuf.Timestamp start_timestamp = 3;
+    google.protobuf.Timestamp end_timestamp = 4;
+  }
+
+// DOWNLOAD
+message DownloadTrafficDataByDetectionPointRequest {
+  string data_source_name = 1;
+  repeated string detection_point_ids = 2;
+  google.protobuf.Timestamp start_time = 3;
+  google.protobuf.Timestamp end_time = 4;
+}
+
+
+message DownloadTrafficDataByDetectionPointByLaneRequest {
+  string data_source_name = 1;
+  repeated string lane_ids = 2;
+  google.protobuf.Timestamp start_time = 3;
+  google.protobuf.Timestamp end_time = 4;
+}
+
+message DownloadTrafficDataByDetectionSectionRequest {
+  string data_source_name = 1;
+  repeated string detection_section_ids = 2;
+  google.protobuf.Timestamp start_time = 3;
+  google.protobuf.Timestamp end_time = 4;    
+}

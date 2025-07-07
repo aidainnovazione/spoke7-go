@@ -1,0 +1,193 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "internal/data/pb";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+import "dtos/real_time_traffic_data_detection_point_lane.proto";
+import "dtos/traffic_requests.proto";
+import "dtos/traffic_responses.proto";
+
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  security_definitions: {
+    security: {
+      key: "bearer"
+      value: {
+        type: TYPE_API_KEY
+        in: IN_HEADER
+        name: "Authorization"
+        description: "Authentication token, prefixed by Bearer: Bearer <token>"
+      }
+    }
+  }
+  security: {
+    security_requirement: {
+      key: "bearer"
+    }
+  }
+};
+
+service RealTimeTrafficDataByDetectionPointByLaneService {
+  rpc ListRealTimeTrafficDataByDetectionPointByLane(ListTrafficDataByDetectionPointByLaneRequest) returns (ListRealTimeTrafficDataByDetectionPointByLaneResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/real_time/detection_point/lane/list"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+
+
+  rpc GetRealTimeTrafficDataByDetectionPointByLane(GetTrafficDataByDetectionPointByLaneRequest) returns (GetRealTimeTrafficDataByDetectionPointByLaneResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/real_time/detection_point/lane/single"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+  
+
+  rpc CreateRealTimeTrafficDataByDetectionPointByLane(CreateRealTimeTrafficDataByDetectionPointByLaneRequest) returns (CreateRealTimeTrafficDataByDetectionPointByLaneResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/traffic/real_time/detection_point/lane",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc UpdateRealTimeTrafficDataByDetectionPointByLane(UpdateRealTimeTrafficDataByDetectionPointByLaneRequest) returns (UpdateRealTimeTrafficDataByDetectionPointByLaneResponse) {
+    option (google.api.http) = {
+      patch: "/api/v1/traffic/real_time/detection_point/lane",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc DeleteRealTimeTrafficDataByDetectionPointByLane(DeleteTrafficDataByDetectionPointByLaneRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/traffic/real_time/detection_point/lane"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc BulkCreateRealTimeTrafficDataByDetectionPointByLane(BulkCreateTrafficDataByDetectionPointByLaneRequest) returns (BulkCreateTrafficDataByDetectionPointByLaneResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/traffic/real_time/detection_point/lane/bulk",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc GetRealTimeTrafficDataByDetectionPointByLaneStatistics(GetTrafficDataByDetectionPointByLaneStatisticsRequest) returns (GetTrafficDataByDetectionPointByLaneStatisticsResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/real_time/detection_point/lane/statistics"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc ListRealTimeTrafficDataByDetectionPointByLaneDaily(ListTrafficDataByDetectionPointByLaneDailyRequest) returns (ListRealTimeTrafficDataByDetectionPointByLaneDailyResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/real_time/detection_point/lane/daily"     
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc DownloadRealTimeTrafficDataByDetectionPointByLane(DownloadTrafficDataByDetectionPointByLaneRequest) returns (DownloadResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/real_time/detection_point/lane/download"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+}
+
+
+
+
+message ListRealTimeTrafficDataByDetectionPointByLaneResponse {
+  repeated RealTimeTrafficDataByDetectionPointByLane real_time_traffic_data_by_detection_point_by_lane = 1;
+  uint32 total_count = 2;
+}
+
+message GetRealTimeTrafficDataByDetectionPointByLaneResponse {
+  repeated RealTimeTrafficDataByDetectionPointByLane real_time_traffic_data_by_detection_point_by_lane = 1;
+  uint32 total_count = 2;
+}
+
+message CreateRealTimeTrafficDataByDetectionPointByLaneRequest {
+  RealTimeTrafficDataByDetectionPointByLane real_time_traffic_data_by_detection_point_by_lane = 1;
+}
+
+message CreateRealTimeTrafficDataByDetectionPointByLaneResponse {
+  RealTimeTrafficDataByDetectionPointByLane real_time_traffic_data_by_detection_point_by_lane = 1;
+}
+
+
+message UpdateRealTimeTrafficDataByDetectionPointByLaneRequest {
+  RealTimeTrafficDataByDetectionPointByLane real_time_traffic_data_by_detection_point_by_lane = 1;
+}
+
+message UpdateRealTimeTrafficDataByDetectionPointByLaneResponse {
+  RealTimeTrafficDataByDetectionPointByLane real_time_traffic_data_by_detection_point_by_lane = 1;
+}
+
+message ListRealTimeTrafficDataByDetectionPointByLaneDailyResponse {
+  repeated RealTimeTrafficDataByDetectionPointByLane daily_stats = 1;
+}

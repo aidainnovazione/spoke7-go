@@ -1,0 +1,225 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "internal/data/pb";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+import "dtos/current_traffic_data_detection_point_lane.proto";
+import "dtos/traffic_requests.proto";
+import "dtos/traffic_statistics.proto";
+import "dtos/traffic_responses.proto";
+
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  security_definitions: {
+    security: {
+      key: "bearer"
+      value: {
+        type: TYPE_API_KEY
+        in: IN_HEADER
+        name: "Authorization"
+        description: "Authentication token, prefixed by Bearer: Bearer <token>"
+      }
+    }
+  }
+  security: {
+    security_requirement: {
+      key: "bearer"
+    }
+  }
+};
+
+service CurrentTrafficDataByDetectionPointByLaneService {
+  rpc ListCurrentTrafficDataByDetectionPointByLane(ListTrafficDataByDetectionPointByLaneRequest) returns (ListCurrentTrafficDataByDetectionPointByLaneResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/current/detection_point/lane/list"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+
+
+  rpc GetCurrentTrafficDataByDetectionPointByLane(GetTrafficDataByDetectionPointByLaneRequest) returns (GetCurrentTrafficDataByDetectionPointByLaneResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/current/detection_point/lane/single"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+  
+
+  rpc CreateCurrentTrafficDataByDetectionPointByLane(CreateCurrentTrafficDataByDetectionPointByLaneRequest) returns (CreateCurrentTrafficDataByDetectionPointByLaneResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/traffic/current/detection_point/lane",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc UpdateCurrentTrafficDataByDetectionPointByLane(UpdateCurrentTrafficDataByDetectionPointByLaneRequest) returns (UpdateCurrentTrafficDataByDetectionPointByLaneResponse) {
+    option (google.api.http) = {
+      patch: "/api/v1/traffic/current/detection_point/lane",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc DeleteCurrentTrafficDataByDetectionPointByLane(DeleteTrafficDataByDetectionPointByLaneRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/traffic/current/detection_point/lane"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc BulkCreateCurrentTrafficDataByDetectionPointByLane(BulkCreateTrafficDataByDetectionPointByLaneRequest) returns (BulkCreateTrafficDataByDetectionPointByLaneResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/traffic/current/detection_point/lane/bulk",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc GetCurrentTrafficDataByDetectionPointByLaneStatistics(GetTrafficDataByDetectionPointByLaneStatisticsRequest) returns (GetCurrentTrafficDataByDetectionPointByLaneStatisticsResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/current/detection_point/lane/statistics"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  rpc GetCurrentTrafficDataByDetectionPointByLaneAggregate(GetTrafficDataByDetectionPointByLaneAggregateRequest) returns (GetCurrentTrafficDataByDetectionPointByLaneAggregateResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/current/detection_point/lane/aggregate"
+    };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        security: {
+          security_requirement: {
+            key: "bearer";
+          }
+        }
+      };
+    }
+
+  /*
+  Get Traffic Data Group by Day*/
+  rpc ListCurrentTrafficDataByDetectionPointByLaneDaily(ListTrafficDataByDetectionPointByLaneDailyRequest) returns (ListCurrentTrafficDataByDetectionPointByLaneDailyResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/current/detection_point/lane/daily"     
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+
+  rpc DownloadCurrentTrafficDataByDetectionPointByLane(DownloadTrafficDataByDetectionPointByLaneRequest) returns (DownloadResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/traffic/current/detection_point/lane/download"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+}
+
+
+message ListCurrentTrafficDataByDetectionPointByLaneDailyResponse {
+  repeated CurrentTrafficDataByDetectionPointByLane daily_stats = 1;
+}
+
+
+message ListCurrentTrafficDataByDetectionPointByLaneResponse {
+  repeated CurrentTrafficDataByDetectionPointByLane current_traffic_data_by_detection_point_by_lane = 1;
+  uint32 total_count = 2;
+}
+
+
+message GetCurrentTrafficDataByDetectionPointByLaneResponse {
+  repeated CurrentTrafficDataByDetectionPointByLane current_traffic_data_by_detection_point_by_lane = 1;
+  uint32 total_count = 2;
+
+}
+
+message CreateCurrentTrafficDataByDetectionPointByLaneRequest {
+  CurrentTrafficDataByDetectionPointByLane current_traffic_data_by_detection_point_by_lane = 1;
+}
+
+message CreateCurrentTrafficDataByDetectionPointByLaneResponse {
+  CurrentTrafficDataByDetectionPointByLane current_traffic_data_by_detection_point_by_lane = 1;
+}
+
+
+message UpdateCurrentTrafficDataByDetectionPointByLaneRequest {
+  CurrentTrafficDataByDetectionPointByLane current_traffic_data_by_detection_point_by_lane = 1;
+}
+
+message UpdateCurrentTrafficDataByDetectionPointByLaneResponse {
+  CurrentTrafficDataByDetectionPointByLane current_traffic_data_by_detection_point_by_lane = 1;
+}
+
+
+message GetCurrentTrafficDataByDetectionPointByLaneStatisticsResponse {
+  string data_source_name = 1;
+  uint32 records_count = 2;
+  google.protobuf.Timestamp first_record_timestamp = 3;
+  google.protobuf.Timestamp last_record_timestamp = 4;
+  repeated CurrentTrafficDataByDetectionPointByLaneStatistics statistics_by_lane = 5;
+}
+
+message GetCurrentTrafficDataByDetectionPointByLaneAggregateResponse {
+  repeated CurrentTrafficDataByDetectionPointByLaneAggregate aggregate_by_lane = 1;
+}

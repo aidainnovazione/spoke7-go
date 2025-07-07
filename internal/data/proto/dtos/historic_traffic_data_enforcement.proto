@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "internal/data/pb";
+
+  
+//  I dati storicizzati vengono conservati con riferimento agli ultimi 10 anni.
+// ci sono due intervalli di aggregazione: ogni ora e ogni giorno
+
+message HistoricTrafficDataEnforcementByHour {
+    google.protobuf.Timestamp created_at = 1;
+    google.protobuf.Timestamp modified_at = 2;
+    string data_source_name = 3;
+    string detection_point_id = 4; 
+    string lane_id = 5; // definisce univocamente detection_point_id
+
+    // campi relativi all'interallo di aggregazione di 60 min -> dipende dal db
+    google.protobuf.Timestamp detection_timestamp = 6;
+    uint32 detection_interval = 7;
+
+    // numero di violazioni rilevate
+    uint32 violation_count_vehicle = 8;
+
+    // entità delle violazioni
+    // Somma sull’intervallo di aggregazione del numero di osservazioni superiori 
+    // ai limiti di velocità ricadenti all’interno di prefissate classi di velocità
+    uint32 entity_count_vehicle = 9;
+
+    // TBD
+    // uint32 entity_count_vehicle_under_50 = 10;
+    // uint32 entity_count_vehicle_between_50_100 = 11;
+    // uint32 entity_count_vehicle_over_100 = 12;
+}
+
+message HistoricTrafficDataEnforcementByDay {
+    google.protobuf.Timestamp created_at = 1;
+    google.protobuf.Timestamp modified_at = 2;
+    string data_source_name = 3;
+    string detection_point_id = 4; 
+    string lane_id = 5;
+
+    // campi relativi all'interallo di aggregazione di 24 h -> dipende dal db
+    google.protobuf.Timestamp detection_timestamp = 6;
+    uint32 detection_interval = 7;
+
+    // numero di violazioni rilevate su fascia di maggiore flusso e flusso non superiore a 1/10 del giornaliero
+    uint32 violation_count_vehicle_max_flow = 8;
+    uint32 violation_count_vehicle_low_flow = 9;
+
+    // entità delle violazioni
+    // Somma sull’intervallo di aggregazione del numero di osservazioni superiori 
+    // ai limiti di velocità ricadenti all’interno di prefissate classi di velocità
+    uint32 entity_count_vehicle_max_flow = 10;
+    uint32 entity_count_vehicle_low_flow = 13;
+
+    // TBD
+    // uint32 entity_count_vehicle_under_50_max_flow = 11;
+    // uint32 entity_count_vehicle_between_50_100_max_flow = 12;
+    // uint32 entity_count_vehicle_over_100_max_flow = 14;
+
+    // uint32 entity_count_vehicle_under_50_low_flow = 15;
+    // uint32 entity_count_vehicle_between_50_100_low_flow = 16;
+    // uint32 entity_count_vehicle_over_100_low_flow = 17;
+}

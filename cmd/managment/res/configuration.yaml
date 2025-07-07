@@ -1,0 +1,42 @@
+service:
+  host: ""
+  port: 9080
+  grpcPort: 9081
+  openMsg: "Spoke 7 Managment Server Started!"
+
+
+log:
+  level: debug # debug, info, warn, error
+  output: file # console, file
+  file:
+    path: "logs/spoke7-sumo.log"
+    maxSize: 1 # MB
+    maxBackups: 3 # number of backups files
+    maxAge: 7 # days
+    compress: false
+
+authentication:
+  endpoint: "TODO"
+  clientId: "TODO"
+  clientSecret : "TODO"
+  certificate: "res/certificate.pem"
+  jwksUrl: "TODO"
+  usernameClaim: "name"
+  rolesClaim: "roles"
+  organizationName: "spoke7"
+  applicationName: "spoke7"
+  groupsClaim: "groups"
+  skipUrls: ["/healh", "/swagger"]
+
+authorization: 
+  modelPath : "res/model.conf"
+  initRulePath : "res/init_rules.csv"
+
+database:
+  type: "postgres"
+  host: "localhost"
+  port: 5432
+  timeout: 5000
+  databaseName: "spoke7"
+  username: "postgres"
+  password: "postgres"

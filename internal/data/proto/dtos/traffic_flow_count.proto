@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "internal/data/pb";
+
+message TrafficFlowParametersByDay {
+    uint32 min = 1;
+    uint32 max = 2;
+    uint32 average = 3;
+    uint32 std = 4;
+}

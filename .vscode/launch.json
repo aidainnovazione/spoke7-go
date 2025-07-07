@@ -1,0 +1,60 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Spoke7-Metadata",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "cmd/metadata/main.go",
+            "dlvFlags": ["--check-go-version=false"]
+        },
+        {
+            "name": "Spoke7-Data",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "cmd/data/main.go",
+            "dlvFlags": ["--check-go-version=false"]
+        },
+        {
+            "name": "Spoke7-Sumo-Integration",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "cmd/sumo-integration/main.go",
+            "dlvFlags": ["--check-go-version=false"]
+        },
+        {
+            "name": "Spoke7-Managment",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "cmd/managment/main.go",
+            "dlvFlags": ["--check-go-version=false"]
+        },
+        {
+            "name": "Spoke7-Storage",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "cmd/storage/main.go",
+            "dlvFlags": ["--check-go-version=false"]
+        },
+    ],
+    "compounds": [
+        {
+            "name": "Spoke7-All",
+            "configurations": [
+                "Spoke7-Metadata",
+                "Spoke7-Data",
+                "Spoke7-Sumo-Integration",
+                "Spoke7-Managment",
+                "Spoke7-Storage"
+            ]
+        }
+    ]
+}

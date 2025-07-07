@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+
+option go_package = "internal/metadata/pb";
+
+
+message RoadNetwork {
+  string id = 1;
+  string name = 2;
+  google.protobuf.Struct geometry = 3; // Store GeoJSON as a JSON string
+  map<string, string> properties = 4;  // Additional metadata properties as key-value pairs
+  string owner = 5;
+  repeated string groups =  6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp modified_at = 8;
+}

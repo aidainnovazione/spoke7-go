@@ -1,0 +1,203 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "internal/managment/pb";
+
+import "dtos/group.proto";
+import "services/auth.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/descriptor.proto";
+
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  security_definitions: {
+    security: {
+      key: "bearer"
+      value: {
+        type: TYPE_API_KEY
+        in: IN_HEADER
+        name: "Authorization"
+        description: "Authentication token, prefixed by Bearer: Bearer <token>"
+      }
+    }
+  }
+  security: {
+    security_requirement: {
+      key: "bearer"
+      
+    }
+  }
+};
+
+
+
+
+service GroupService {   
+  
+     rpc ListGroup(ListGroupsRequest) returns (ListGroupsResponse) {
+        option (method_authorization_scope) =  {
+          required_permissions: "group:list"
+        };
+        
+
+        option (google.api.http) = {
+          get: "/api/v1/groups"
+        };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        security: {
+          security_requirement: {
+            key: "bearer";
+          }
+        }
+      };
+    }
+
+    rpc ListAllGroup(ListGroupsRequest) returns (ListGroupsResponse) {
+        option (method_authorization_scope) =  {
+          required_permissions: "group:all"
+        };
+        
+
+        option (google.api.http) = {
+          get: "/api/v1/groups:all"
+        };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        security: {
+          security_requirement: {
+            key: "bearer";
+          }
+        }
+      };
+    }
+
+    rpc CreateGroup(CreateGroupsRequest) returns (GroupInfo) {
+      option (method_authorization_scope) =  {
+        required_permissions: "group:create"
+      };
+    
+      option (google.api.http) = {
+        post: "/api/v1/groups"
+        body: "*"
+      };
+    
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        security: {
+          security_requirement: {
+            key: "bearer";
+          }
+        }
+      };
+    }
+
+    rpc DeleteGroup(DeleteGroupsRequest) returns (DeleteGroupsResponse) {
+      option (method_authorization_scope) =  {
+        required_permissions: "group:delete"
+        restricted : true 
+      };
+    
+      option (google.api.http) = {
+        delete: "/api/v1/groups/{name}"
+      };
+    
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        security: {
+          security_requirement: {
+            key: "bearer";
+          }
+        }
+      };
+    }  
+
+
+
+    rpc UpdateGroup(UpdateGroupRequest) returns (GroupInfo) {
+      option (method_authorization_scope) = {
+        required_permissions: "group:update"
+      };
+      option (google.api.http) = {
+        put: "/api/v1/groups/{name}"
+        body: "*"
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        security: {
+          security_requirement: {
+            key: "bearer";
+          }
+        }
+      };
+    }
+
+
+
+  rpc GetGroup(GetGroupRequest) returns (GroupInfo) {
+    option (method_authorization_scope) = {
+      required_permissions: "group:read"
+    };
+    option (google.api.http) = {
+      get: "/api/v1/groups/{name}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "bearer";
+        }
+      }
+    };
+  }
+
+  }
+
+  message ListGroupsRequest {
+    int32 page = 2;
+    int32 page_size = 3;
+  }
+
+
+  message ListGroupsResponse {
+    repeated GroupInfo groups = 1;
+  }
+
+  message CreateGroupsRequest {
+    string owner = 1;
+    string name = 2;
+    string display_name = 3;
+    string manager = 4;
+    string contact_email = 5;
+    string type = 6;
+    string parent_id = 7;
+    bool is_top_group = 8;
+    repeated string users = 9;
+    string title = 10;
+    string key = 11;
+    bool is_enabled = 12;
+  }
+
+  message DeleteGroupsRequest {
+    string name = 1;
+  }
+
+  message DeleteGroupsResponse {
+    bool ok = 1;
+  }
+
+
+  message GetGroupRequest {
+    string name = 1;
+  }
+  
+  message UpdateGroupRequest {
+    string name = 1;
+    string display_name = 2;
+    string manager = 3;
+    string contact_email = 4;
+    string type = 5;
+    string parent_id = 6;
+    bool is_top_group = 7;
+    repeated string users = 8;
+    string title = 9;
+    string key = 10;
+    bool is_enabled = 11;
+  }

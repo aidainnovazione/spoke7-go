@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package pb;
+
+import "dtos/user.proto";
+
+option go_package = "internal/managment/pb";
+
+message GroupInfo {
+  string owner = 1;
+  string name = 2;
+  string created_time = 3;
+  string updated_time = 4;
+
+  string display_name = 5;
+  string manager = 6;
+  string contact_email = 7;
+  string type = 8;
+  string parent_id = 9;
+  bool is_top_group = 10;
+  repeated string users = 11;
+  repeated UserInfo users_info = 12;
+
+  string title = 13;
+  string key = 14;
+  repeated GroupInfo children = 15;
+  bool is_enabled = 16;
+}

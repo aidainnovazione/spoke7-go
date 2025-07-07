@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "internal/metadata/pb";
+
+message Health {
+  string status = 1;
+  string version = 2;
+}

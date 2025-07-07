@@ -1,0 +1,162 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "internal/metadata/pb";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "dtos/road_network.proto";
+import "dtos/file.proto";
+import "google/protobuf/struct.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+
+service RoadNetworkService {
+    rpc ListRoadNetworks(RoadNetworkListParams) returns (RoadNetworkListResponse) {
+      option (google.api.http) = {
+        get: "/api/v1/roadnetwork"
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        security: {
+          security_requirement: {
+            key: "bearer";
+          }
+        }
+      };
+    }
+  
+    rpc GetRoadNetwork(RoadNetworkGetRequest) returns (RoadNetwork) {
+      option (google.api.http) = {
+        get: "/api/v1/roadnetwork/{id}"
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        security: {
+          security_requirement: {
+            key: "bearer"
+          }
+        }
+      };
+    }
+
+    rpc GetRoadNetworkGeoJSON(RoadNetworkGetRequest) returns (google.protobuf.Struct) {
+      option (google.api.http) = {
+        get: "/api/v1/roadnetwork/{id}/geoJSON"
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        security: {
+          security_requirement: {
+            key: "bearer"
+          }
+        }
+      };
+    }
+  
+    rpc CreateRoadNetwork(RoadNetworkCreateRequest) returns (RoadNetwork) {
+      option (google.api.http) = {
+        post: "/api/v1/roadnetwork"
+        body: "*"
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        security: {
+          security_requirement: {
+            key: "bearer"
+          }
+        }
+      };
+    }
+  
+    rpc UpdateRoadNetwork(RoadNetworkUpdateRequest) returns (RoadNetwork) {
+      option (google.api.http) = {
+        put: "/api/v1/roadnetwork/{id}"
+        body: "*"
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        security: {
+          security_requirement: {
+            key: "bearer"
+          }
+        }
+      };
+    }
+
+    rpc UpdateRoadNetworkByImport(RoadNetworkUpdateByImportRequest) returns (RoadNetwork) {
+      option (google.api.http) = {
+        put: "/api/v1/roadnetwork/{id}/upload"
+        body: "*"
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        security: {
+          security_requirement: {
+            key: "bearer"
+          }
+        }
+      };
+    }
+  
+    rpc DeleteRoadNetwork(RoadNetworkDeleteRequest) returns (google.protobuf.Empty) {
+      option (google.api.http) = {
+        delete: "/api/v1/roadnetwork/{id}"
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        security: {
+          security_requirement: {
+            key: "bearer"
+          }
+        }
+      };
+    }
+
+    rpc UploadRoadNetwork(RoadNetworkFile) returns (RoadNetwork) {
+        option (google.api.http) = {
+          put: "/api/v1/roadnetwork/upload"
+          body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          security: {
+            security_requirement: {
+              key: "bearer"
+            }
+          }
+        };
+      }
+
+
+
+  }
+
+
+  message RoadNetworkFile {
+    File file = 1; // File containing detection points in JSON format
+  }
+
+  message RoadNetworkUpdateByImportRequest{
+    string id = 1;
+    File file = 2; // File containing detection points in JSON format
+  }
+
+
+  message RoadNetworkCreateRequest {    
+    RoadNetwork road_network = 2;
+  }
+
+  message RoadNetworkUpdateRequest {
+    string id = 1;
+    RoadNetwork road_network = 2;
+  }
+  
+
+message RoadNetworkGetRequest {
+    string id = 1;
+  }
+  
+  message RoadNetworkDeleteRequest {
+    string id = 1;
+  }
+  
+  message RoadNetworkListParams {}
+  
+  message RoadNetworkListResponse {
+    repeated RoadNetwork road_networks = 1;
+  }
+  

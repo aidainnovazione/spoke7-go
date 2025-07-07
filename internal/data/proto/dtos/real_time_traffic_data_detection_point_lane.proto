@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "internal/data/pb";
+
+enum VehicleClassType {
+    VEHICLE_CLASS_1 = 0; // (moto)
+    VEHICLE_CLASS_2 = 1; // (auto)
+    VEHICLE_CLASS_3 = 2; // (auto con rimorchio)
+    VEHICLE_CLASS_4 = 3; // (furgone)
+    VEHICLE_CLASS_5 = 4; // (camion)
+    VEHICLE_CLASS_6 = 5; // (autotreno)
+    VEHICLE_CLASS_7 = 6; // (autoarticolato)
+    VEHICLE_CLASS_8 = 7; // (autobus)
+    VEHICLE_CLASS_OTHER = 8; // (non classificato)
+  }
+
+// i dati così come rilevati e trasmessi dai dispositivi periferici (sezione A.1) e preserva 
+// quindi la massima disaggregazione del dato. I dati vengono inseriti nel database disaggregato dopo 
+// essere stati estratti dai pacchetti utilizzati per la trasmissione
+message RealTimeTrafficDataByDetectionPointByLane {
+    google.protobuf.Timestamp created_at = 1;
+    google.protobuf.Timestamp modified_at = 2;
+
+    //localizzazione e caratterizzaziobne rilievo
+    string data_source_name = 3;
+    string lane_id = 4; // definisce univocamente detection_point_id
+    string detection_type = 5;
+    string detection_technology = 6; //es spira, sensore above ground
+    
+    // data rilevamento
+    google.protobuf.Timestamp detection_timestamp = 7;
+
+    // dati
+    VehicleClassType vehicle_class = 8;
+    float vehicle_speed = 9; // km/h
+    float vehicle_length = 10; //cm
+    float vehicle_headway = 11; //ms rispetto a veicolo precedente
+    bool queue_present = 12; // presenza di coda
+
+
+    // modalità rilievo
+    //     Indicazione esplicita del caso di flusso in controsenso rispetto alla direzione attesa (es.: 
+    // inversione della direzione di marcia della corsia)
+    bool correct_flow_direction = 13;
+}

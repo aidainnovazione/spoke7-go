@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package pb;
+
+
+option go_package = "internal/managment/pb";
+
+message PermissionFeature {
+  string feature = 1;
+  repeated Permission permissions = 2;
+}
+
+message Permission {
+  string resource = 1;
+  string action = 2;
+  string permission_name = 3;
+}
